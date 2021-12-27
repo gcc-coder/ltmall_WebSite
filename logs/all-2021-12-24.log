@@ -1,0 +1,109 @@
+INFO 2021-12-24 14:08:20,367 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 14:08:20,848 basehttp 154 "GET / HTTP/1.1" 200 38951
+INFO 2021-12-24 14:08:20,902 basehttp 154 "GET /static/js/vue-2.5.16.js HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,902 basehttp 154 "GET /static/css/main.css HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,903 basehttp 154 "GET /static/css/reset.css HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,903 basehttp 154 "GET /static/js/jquery-1.12.4.min.js HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,904 basehttp 154 "GET /static/js/axios-0.18.0.min.js HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,910 basehttp 154 "GET /static/js/common.js HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,919 basehttp 154 "GET /static/js/slide.js HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,925 basehttp 154 "GET /static/images/1.png HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,925 basehttp 154 "GET /static/images/goods/goods001.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,925 basehttp 154 "GET /static/js/index.js HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,925 basehttp 154 "GET /static/images/goods/goods002.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,929 basehttp 154 "GET /static/images/slide01.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,930 basehttp 154 "GET /static/images/slide02.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,932 basehttp 154 "GET /static/images/slide04.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,932 basehttp 154 "GET /static/images/slide03.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,934 basehttp 154 "GET /static/images/adv01.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,934 basehttp 154 "GET /static/images/banner01.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,936 basehttp 154 "GET /static/images/goods/goods003.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,937 basehttp 154 "GET /static/images/goods/goods004.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,938 basehttp 154 "GET /static/images/goods/goods005.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,939 basehttp 154 "GET /static/images/banner02.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,940 basehttp 154 "GET /static/images/goods/goods008.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,940 basehttp 154 "GET /static/images/banner03.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,940 basehttp 154 "GET /static/images/goods/goods009.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:20,940 basehttp 154 "GET /static/images/icons.png HTTP/1.1" 304 0
+WARNING 2021-12-24 14:08:21,081 basehttp 154 "GET /favicon.ico HTTP/1.1" 404 2239
+INFO 2021-12-24 14:08:23,517 basehttp 154 "GET / HTTP/1.1" 200 38951
+INFO 2021-12-24 14:08:36,699 basehttp 154 "GET /users/register HTTP/1.1" 200 4723
+INFO 2021-12-24 14:08:36,740 basehttp 154 "GET /static/images/pic_code.jpg HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:36,746 basehttp 154 "GET /static/images/interval_line.png HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:36,747 basehttp 154 "GET /static/images/icons02.png HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:36,747 basehttp 154 "GET /static/images/register_banner.png HTTP/1.1" 304 0
+INFO 2021-12-24 14:08:36,749 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-24 14:09:12,809 basehttp 154 "GET / HTTP/1.1" 200 38949
+INFO 2021-12-24 14:09:50,380 basehttp 154 "GET / HTTP/1.1" 200 38983
+INFO 2021-12-24 14:10:08,914 basehttp 154 "GET / HTTP/1.1" 200 38984
+INFO 2021-12-24 14:10:15,806 basehttp 154 "GET / HTTP/1.1" 200 38983
+INFO 2021-12-24 16:15:53,534 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 16:23:42,610 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 16:23:57,916 basehttp 154 "GET /users/register HTTP/1.1" 200 4782
+WARNING 2021-12-24 16:24:01,465 basehttp 154 "GET /users/usernames/rick/count/ HTTP/1.1" 404 2721
+WARNING 2021-12-24 16:24:05,968 basehttp 154 "GET /users/usernames/rick/count/ HTTP/1.1" 404 2721
+WARNING 2021-12-24 16:24:07,551 basehttp 154 "GET /users/usernames/rick/count/ HTTP/1.1" 404 2721
+WARNING 2021-12-24 16:24:10,697 basehttp 154 "GET /users/usernames/rick/count/ HTTP/1.1" 404 2721
+INFO 2021-12-24 16:24:10,748 basehttp 154 "POST /users/register HTTP/1.1" 200 4813
+WARNING 2021-12-24 16:24:33,627 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+INFO 2021-12-24 16:24:35,326 basehttp 154 "POST /users/register HTTP/1.1" 200 4813
+WARNING 2021-12-24 16:24:35,399 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+WARNING 2021-12-24 16:25:09,222 basehttp 154 "GET /users/usernames/rick/count/ HTTP/1.1" 404 2721
+INFO 2021-12-24 16:26:23,977 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\urls.py changed, reloading.
+INFO 2021-12-24 16:26:24,494 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 16:29:33,212 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 16:30:15,258 basehttp 154 "GET /users/register HTTP/1.1" 200 4782
+WARNING 2021-12-24 16:30:15,348 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+WARNING 2021-12-24 16:30:21,367 basehttp 154 "GET /users/usernames/rick/count/ HTTP/1.1" 404 2721
+INFO 2021-12-24 16:36:30,890 autoreload 203 D:\(Project\MyDjango\ltmall\ltmall\settings_dev.py changed, reloading.
+INFO 2021-12-24 16:36:31,413 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 16:36:33,285 basehttp 154 "GET /users/register HTTP/1.1" 200 4782
+WARNING 2021-12-24 16:36:33,364 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+INFO 2021-12-24 16:36:53,958 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-24 16:36:56,694 basehttp 154 "GET /users/register HTTP/1.1" 200 4782
+WARNING 2021-12-24 16:36:56,802 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+INFO 2021-12-24 16:37:10,500 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 16:37:14,260 basehttp 154 "GET /users/register HTTP/1.1" 200 4782
+WARNING 2021-12-24 16:37:14,361 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+INFO 2021-12-24 16:37:20,235 basehttp 154 "GET /users/register HTTP/1.1" 200 4782
+INFO 2021-12-24 16:37:20,263 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 3958
+INFO 2021-12-24 16:37:20,264 basehttp 154 "GET /static/css/reset.css HTTP/1.1" 200 638
+INFO 2021-12-24 16:37:20,266 basehttp 154 "GET /static/images/1.png HTTP/1.1" 200 3555
+INFO 2021-12-24 16:37:20,267 basehttp 154 "GET /static/css/main.css HTTP/1.1" 200 40091
+INFO 2021-12-24 16:37:20,267 basehttp 154 "GET /static/images/pic_code.jpg HTTP/1.1" 200 4507
+INFO 2021-12-24 16:37:20,298 basehttp 154 "GET /static/images/icons02.png HTTP/1.1" 200 3935
+INFO 2021-12-24 16:37:20,298 basehttp 154 "GET /static/images/interval_line.png HTTP/1.1" 200 1123
+INFO 2021-12-24 16:37:20,298 basehttp 154 "GET /static/js/axios-0.18.0.min.js HTTP/1.1" 200 12941
+INFO 2021-12-24 16:37:20,299 basehttp 154 "GET /static/images/register_banner.png HTTP/1.1" 200 54894
+INFO 2021-12-24 16:37:20,312 basehttp 154 "GET /static/js/vue-2.5.16.js HTTP/1.1" 200 289307
+WARNING 2021-12-24 16:37:20,360 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+WARNING 2021-12-24 16:37:20,371 basehttp 154 "GET /favicon.ico HTTP/1.1" 404 2239
+INFO 2021-12-24 16:37:28,791 basehttp 154 "GET /users/username/rick/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:33,634 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:37,862 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:38,763 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:38,890 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:43,882 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:44,847 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:45,039 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:45,226 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:45,378 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 16:37:45,560 basehttp 154 "GET /users/username/admin/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 19:08:05,411 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-24 19:08:12,411 basehttp 154 "GET /users/register HTTP/1.1" 200 4783
+INFO 2021-12-24 19:08:12,457 basehttp 154 "GET /static/images/1.png HTTP/1.1" 200 3555
+INFO 2021-12-24 19:08:12,457 basehttp 154 "GET /static/css/reset.css HTTP/1.1" 200 638
+INFO 2021-12-24 19:08:12,459 basehttp 154 "GET /static/images/pic_code.jpg HTTP/1.1" 200 4507
+INFO 2021-12-24 19:08:12,459 basehttp 154 "GET /static/css/main.css HTTP/1.1" 200 40091
+INFO 2021-12-24 19:08:12,460 basehttp 154 "GET /static/js/axios-0.18.0.min.js HTTP/1.1" 200 12941
+INFO 2021-12-24 19:08:12,461 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 5157
+INFO 2021-12-24 19:08:12,462 basehttp 154 "GET /static/js/vue-2.5.16.js HTTP/1.1" 200 289307
+INFO 2021-12-24 19:08:12,469 basehttp 154 "GET /static/images/interval_line.png HTTP/1.1" 200 1123
+INFO 2021-12-24 19:08:12,469 basehttp 154 "GET /static/images/icons02.png HTTP/1.1" 200 3935
+INFO 2021-12-24 19:08:12,470 basehttp 154 "GET /static/images/register_banner.png HTTP/1.1" 200 54894
+WARNING 2021-12-24 19:08:12,520 basehttp 154 "GET /favicon.ico HTTP/1.1" 404 2239
+INFO 2021-12-24 19:08:14,759 basehttp 154 "GET /users/username/rick/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 19:08:18,316 basehttp 154 "GET /users/mobile/17710290729/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 19:08:26,233 basehttp 154 "GET /users/mobile/18340867432/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 19:08:28,507 basehttp 154 "GET /users/username/rick/count/ HTTP/1.1" 200 41
+INFO 2021-12-24 19:08:28,507 basehttp 154 "GET /users/mobile/18340867432/count/ HTTP/1.1" 200 41

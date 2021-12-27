@@ -1,0 +1,390 @@
+INFO 2021-12-21 10:37:33,323 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-21 10:37:38,444 basehttp 154 "GET / HTTP/1.1" 404 2027
+WARNING 2021-12-21 10:37:38,534 basehttp 154 "GET /favicon.ico HTTP/1.1" 404 2078
+INFO 2021-12-21 10:37:43,320 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 10:37:46,863 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 10:37:46,904 basehttp 154 "GET /static/users/css/main.css HTTP/1.1" 304 0
+INFO 2021-12-21 10:37:46,904 basehttp 154 "GET /static/users/images/pic_code.jpg HTTP/1.1" 304 0
+INFO 2021-12-21 10:37:46,904 basehttp 154 "GET /static/users/css/reset.css HTTP/1.1" 200 638
+INFO 2021-12-21 10:37:46,904 basehttp 154 "GET /static/users/images/1.png HTTP/1.1" 304 0
+INFO 2021-12-21 10:37:46,917 basehttp 154 "GET /static/users/images/register_banner.png HTTP/1.1" 304 0
+INFO 2021-12-21 10:37:46,917 basehttp 154 "GET /static/users/images/icons02.png HTTP/1.1" 304 0
+INFO 2021-12-21 10:37:46,917 basehttp 154 "GET /static/users/images/interval_line.png HTTP/1.1" 304 0
+WARNING 2021-12-21 10:40:53,981 log 228 Forbidden (CSRF cookie not set.): /users/register
+WARNING 2021-12-21 10:40:53,982 basehttp 154 "POST /users/register?username=Rick&password=12345678 HTTP/1.1" 403 2868
+INFO 2021-12-21 10:41:41,251 autoreload 578 Watching for file changes with StatReloader
+ERROR 2021-12-21 10:41:44,590 basehttp 154 "POST /users/register?username=Rick&password=12345678 HTTP/1.1" 500 59
+INFO 2021-12-21 10:44:49,882 autoreload 578 Watching for file changes with StatReloader
+ERROR 2021-12-21 10:44:53,884 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 10:44:53,884 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 10:44:53,884 basehttp 154 "POST /users/register?username=Rick&password=12345678 HTTP/1.1" 500 60257
+ERROR 2021-12-21 10:45:45,410 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 10:45:45,410 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 10:45:45,410 basehttp 154 "POST /users/register?username=Rick&password=12345678 HTTP/1.1" 500 60257
+INFO 2021-12-21 10:45:45,730 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 10:45:46,202 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 10:45:48,827 basehttp 154 "POST /users/register?username=Rick&password=12345678 HTTP/1.1" 200 30
+INFO 2021-12-21 10:46:14,548 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 10:46:15,991 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 10:46:59,592 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729&password2=12345679 HTTP/1.1" 200 30
+INFO 2021-12-21 10:47:16,300 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\forms.py changed, reloading.
+INFO 2021-12-21 10:47:16,746 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 10:47:20,059 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729&password2=12345679 HTTP/1.1" 200 30
+INFO 2021-12-21 10:47:21,775 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729&password2=12345679 HTTP/1.1" 200 30
+INFO 2021-12-21 10:47:35,647 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729&password2=12345678 HTTP/1.1" 200 30
+INFO 2021-12-21 10:47:36,646 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729&password2=12345678 HTTP/1.1" 200 30
+INFO 2021-12-21 10:48:05,577 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 10:48:08,014 basehttp 154 "POST /users/register?username=Rick&password=12345678&mobile=17710290729&password2=12345678 HTTP/1.1" 200 30
+INFO 2021-12-21 10:52:24,755 basehttp 154 "POST /users/register?username=Rick&password=123456&mobile=17710290729&password2=123456 HTTP/1.1" 200 30
+INFO 2021-12-21 10:54:45,838 basehttp 154 "POST /users/register?username=Rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 10:55:35,453 basehttp 154 "POST /users/register?username=rick&password=123456&password2=1234563&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 10:55:41,227 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 10:56:16,910 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:06:00,633 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:06:12,815 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:06:28,802 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:10:19,410 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:10:28,325 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:12:39,005 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:12:42,351 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:12:49,539 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:25:43,904 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:26:39,074 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:26:43,534 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:33:29,511 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:33:36,847 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:33:54,817 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:34:22,825 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-21 11:34:25,810 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-21 11:34:31,796 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:34:47,657 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:35:27,010 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:35:30,319 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:35:32,339 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:35:33,862 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:35:43,267 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:35:51,400 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+WARNING 2021-12-21 11:36:30,198 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-21 11:36:37,671 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:45,858 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:47,570 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:48,170 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:48,577 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:48,773 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:48,961 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:49,158 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:49,347 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:49,522 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:49,735 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:49,923 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:50,110 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:50,515 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:50,704 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:50,867 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:51,057 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:36:53,689 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:37:22,674 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:37:26,004 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:37:35,537 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:37:37,526 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-21 11:37:44,377 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:37:48,659 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:37:49,750 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:37:53,136 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:37:54,644 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:38:12,006 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:38:14,522 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:40:01,151 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:40:11,699 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+ERROR 2021-12-21 11:40:19,636 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 11:40:19,636 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 11:40:19,637 basehttp 154 "POST /users/register HTTP/1.1" 500 59765
+ERROR 2021-12-21 11:40:30,142 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 11:40:30,142 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view apps.users.views.RegisterView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-21 11:40:30,143 basehttp 154 "POST /users/register HTTP/1.1" 500 59765
+INFO 2021-12-21 11:40:30,450 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 11:40:30,924 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:40:32,172 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:41:29,172 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:41:32,673 basehttp 154 "POST /users/register?username=rick&password=123456&password2=123456&mobile=17710290729 HTTP/1.1" 200 30
+INFO 2021-12-21 11:41:46,578 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 11:41:47,094 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:55:45,353 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 11:55:46,841 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:55:53,186 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:56:21,359 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:56:35,341 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:58:50,938 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:59:15,467 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:59:39,437 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:59:40,361 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:59:46,389 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 11:59:55,178 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 11:59:58,426 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 12:00:42,718 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 12:00:43,202 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 12:00:45,366 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:01:15,536 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\forms.py changed, reloading.
+INFO 2021-12-21 12:01:16,071 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 12:01:16,279 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:01:18,056 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:01:25,816 basehttp 154 "POST /users/register HTTP/1.1" 200 39
+INFO 2021-12-21 12:01:56,255 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:02:22,456 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:02:23,706 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:03:05,595 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\forms.py changed, reloading.
+INFO 2021-12-21 12:03:06,345 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 12:17:33,472 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 12:17:38,637 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:17:54,967 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:17:56,168 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 12:18:03,138 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 12:18:55,588 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 12:18:59,986 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 12:19:13,018 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 12:19:14,674 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 12:19:18,282 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 12:19:20,442 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 13:14:42,159 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 13:14:42,690 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 13:14:51,294 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 13:14:55,665 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 13:15:08,027 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 13:15:08,690 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 13:15:09,167 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 13:15:10,557 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 13:16:02,626 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 13:16:03,115 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 13:16:03,603 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 13:16:04,915 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 13:30:50,633 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 13:30:53,201 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 13:31:19,794 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 13:31:21,320 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 14:07:03,563 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 14:07:05,291 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 14:08:22,034 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 14:08:22,543 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 14:28:50,717 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 14:29:00,729 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 14:29:27,936 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 14:29:37,565 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:03:53,455 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:03:54,116 autoreload 578 Watching for file changes with StatReloader
+ERROR 2021-12-21 15:04:07,376 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\(Project\MyDjango\ltmall\apps\users\views.py", line 34, in post
+    res = (i for i in info.values() for info in user_info)
+NameError: name 'info' is not defined
+ERROR 2021-12-21 15:04:07,376 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\(Project\MyDjango\ltmall\apps\users\views.py", line 34, in post
+    res = (i for i in info.values() for info in user_info)
+NameError: name 'info' is not defined
+ERROR 2021-12-21 15:04:07,378 basehttp 154 "POST /users/register HTTP/1.1" 500 79431
+INFO 2021-12-21 15:05:12,415 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:05:12,882 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:06:28,118 autoreload 578 Watching for file changes with StatReloader
+ERROR 2021-12-21 15:06:36,660 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\(Project\MyDjango\ltmall\apps\users\views.py", line 34, in post
+    res = [i for i in info.values() for info in user_info]
+NameError: name 'info' is not defined
+ERROR 2021-12-21 15:06:36,660 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\(Project\MyDjango\ltmall\apps\users\views.py", line 34, in post
+    res = [i for i in info.values() for info in user_info]
+NameError: name 'info' is not defined
+ERROR 2021-12-21 15:06:36,662 basehttp 154 "POST /users/register HTTP/1.1" 500 79431
+INFO 2021-12-21 15:06:59,777 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:08:42,962 autoreload 578 Watching for file changes with StatReloader
+ERROR 2021-12-21 15:08:51,845 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\(Project\MyDjango\ltmall\apps\users\views.py", line 35, in post
+    res = [i for i in info.values()]
+AttributeError: 'list' object has no attribute 'values'
+ERROR 2021-12-21 15:08:51,845 log 228 Internal Server Error: /users/register
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "D:\(Project\MyDjango\ltmall\apps\users\views.py", line 35, in post
+    res = [i for i in info.values()]
+AttributeError: 'list' object has no attribute 'values'
+ERROR 2021-12-21 15:08:51,848 basehttp 154 "POST /users/register HTTP/1.1" 500 79779
+INFO 2021-12-21 15:10:08,678 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:12:26,083 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:12:26,731 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:13:22,159 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:13:22,821 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:13:26,016 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:13:58,731 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:13:59,440 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:14:13,724 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:14:14,428 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:14:16,738 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:14:18,848 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:14:52,982 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:14:54,561 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:15:36,513 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:15:37,162 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:15:38,588 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:16:09,913 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:16:10,641 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:17:38,307 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:17:38,960 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:18:22,995 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:18:24,916 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:18:33,082 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:19:53,421 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:19:57,510 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:20:05,833 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:22:11,686 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:22:18,193 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:22:18,774 basehttp 154 "POST /users/register HTTP/1.1" 200 39
+INFO 2021-12-21 15:22:56,585 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:22:58,126 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 15:23:00,297 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-21 15:23:28,184 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:23:28,917 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:23:30,523 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:25:14,237 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:25:19,488 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:25:20,568 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:25:26,269 basehttp 154 "POST /users/register HTTP/1.1" 200 39
+INFO 2021-12-21 15:25:43,691 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:25:44,389 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:25:48,404 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:25:55,989 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:26:11,518 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:26:14,418 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:26:16,052 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:26:19,906 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:26:26,320 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 15:26:48,463 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 15:26:49,155 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 15:26:50,903 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:25:14,055 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 16:25:15,142 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 16:25:47,626 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:28:14,864 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 16:28:15,591 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 16:28:17,934 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:28:19,915 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:28:53,686 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 16:28:54,338 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 16:28:57,174 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:28:58,720 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:29:15,707 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:29:18,961 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 16:29:20,559 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:30:06,775 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-21 16:30:07,444 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 16:30:09,511 basehttp 154 "POST /users/register HTTP/1.1" 200 2986
+INFO 2021-12-21 16:33:30,048 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-21 16:33:32,621 basehttp 154 "POST /users/register HTTP/1.1" 200 2986

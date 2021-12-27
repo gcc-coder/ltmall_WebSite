@@ -1,0 +1,218 @@
+INFO 2021-12-22 18:26:44,401 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-22 18:26:48,716 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-22 18:26:53,697 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-22 18:42:16,551 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 18:42:22,596 basehttp 154 "GET /users/register HTTP/1.1" 200 3294
+INFO 2021-12-22 18:42:22,658 basehttp 154 "GET /static/users/images/1.png HTTP/1.1" 304 0
+INFO 2021-12-22 18:42:22,658 basehttp 154 "GET /static/users/css/reset.css HTTP/1.1" 304 0
+INFO 2021-12-22 18:42:22,658 basehttp 154 "GET /static/users/css/main.css HTTP/1.1" 304 0
+INFO 2021-12-22 18:42:22,658 basehttp 154 "GET /static/users/images/pic_code.jpg HTTP/1.1" 304 0
+INFO 2021-12-22 18:42:22,659 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 200 595
+INFO 2021-12-22 18:42:22,679 basehttp 154 "GET /static/users/js/vue-2.5.16.js HTTP/1.1" 200 289307
+INFO 2021-12-22 18:42:23,463 basehttp 154 "GET /static/users/images/register_banner.png HTTP/1.1" 304 0
+INFO 2021-12-22 18:42:23,463 basehttp 154 "GET /static/users/images/interval_line.png HTTP/1.1" 304 0
+INFO 2021-12-22 18:42:23,464 basehttp 154 "GET /static/users/images/icons02.png HTTP/1.1" 304 0
+INFO 2021-12-22 18:42:43,276 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 18:43:28,858 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 18:43:29,491 basehttp 154 "GET /users/register HTTP/1.1" 200 3318
+INFO 2021-12-22 18:43:29,534 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 200 601
+INFO 2021-12-22 18:43:31,562 basehttp 154 "GET /users/register HTTP/1.1" 200 3318
+INFO 2021-12-22 18:43:31,581 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 18:44:28,362 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 18:44:29,258 basehttp 154 "GET /users/register HTTP/1.1" 200 3314
+INFO 2021-12-22 18:44:29,282 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 200 597
+INFO 2021-12-22 18:56:26,294 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 18:56:29,588 basehttp 154 "GET /users/register HTTP/1.1" 200 3337
+INFO 2021-12-22 18:56:29,624 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 200 1335
+INFO 2021-12-22 18:56:30,786 basehttp 154 "GET /users/register HTTP/1.1" 200 3337
+INFO 2021-12-22 18:56:30,815 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:01:16,097 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:01:20,274 basehttp 154 "GET /users/register HTTP/1.1" 200 4485
+INFO 2021-12-22 19:01:20,302 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 200 1300
+INFO 2021-12-22 19:01:27,972 basehttp 154 "GET /users/register HTTP/1.1" 200 4485
+INFO 2021-12-22 19:01:33,743 basehttp 154 "GET /users/register HTTP/1.1" 200 4455
+INFO 2021-12-22 19:01:33,768 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:03:11,096 basehttp 154 "GET /users/register HTTP/1.1" 200 4532
+INFO 2021-12-22 19:03:11,131 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:03:17,504 basehttp 154 "GET /users/register HTTP/1.1" 200 4532
+INFO 2021-12-22 19:03:20,839 basehttp 154 "POST /users/register HTTP/1.1" 200 30
+INFO 2021-12-22 19:03:22,603 basehttp 154 "GET /users/register HTTP/1.1" 200 4532
+INFO 2021-12-22 19:06:42,131 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-22 19:06:42,630 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:10:31,369 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:10:31,522 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:31,561 basehttp 154 "GET /static/users/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:10:32,363 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:32,562 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:32,744 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:32,921 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:33,090 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:33,263 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:33,425 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:33,591 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:33,752 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:33,914 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:34,094 basehttp 154 "GET /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:36,446 basehttp 154 "POST /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:10:50,018 basehttp 154 "POST /users/register HTTP/1.1" 200 4666
+INFO 2021-12-22 19:22:02,980 autoreload 203 D:\(Project\MyDjango\ltmall\ltmall\urls.py changed, reloading.
+INFO 2021-12-22 19:22:03,575 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:23:05,825 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:23:09,707 basehttp 154 "GET / HTTP/1.1" 200 38951
+WARNING 2021-12-22 19:23:09,747 basehttp 154 "GET /static/css/reset.css HTTP/1.1" 404 1663
+WARNING 2021-12-22 19:23:09,750 basehttp 154 "GET /static/css/main.css HTTP/1.1" 404 1660
+WARNING 2021-12-22 19:23:09,758 basehttp 154 "GET /static/js/jquery-1.12.4.min.js HTTP/1.1" 404 1693
+WARNING 2021-12-22 19:23:09,759 basehttp 154 "GET /static/js/vue-2.5.16.js HTTP/1.1" 404 1672
+WARNING 2021-12-22 19:23:09,760 basehttp 154 "GET /static/js/axios-0.18.0.min.js HTTP/1.1" 404 1690
+WARNING 2021-12-22 19:23:09,785 basehttp 154 "GET /static/js/common.js HTTP/1.1" 404 1660
+WARNING 2021-12-22 19:23:09,788 basehttp 154 "GET /static/images/1.png HTTP/1.1" 404 1660
+WARNING 2021-12-22 19:23:09,791 basehttp 154 "GET /static/images/goods/goods002.jpg HTTP/1.1" 404 1699
+WARNING 2021-12-22 19:23:09,791 basehttp 154 "GET /static/images/goods/goods001.jpg HTTP/1.1" 404 1699
+WARNING 2021-12-22 19:23:09,794 basehttp 154 "GET /static/js/slide.js HTTP/1.1" 404 1657
+WARNING 2021-12-22 19:23:09,795 basehttp 154 "GET /static/images/slide01.jpg HTTP/1.1" 404 1678
+WARNING 2021-12-22 19:23:09,806 basehttp 154 "GET /static/js/index.js HTTP/1.1" 404 1657
+WARNING 2021-12-22 19:23:09,806 basehttp 154 "GET /static/images/slide02.jpg HTTP/1.1" 404 1678
+WARNING 2021-12-22 19:23:09,808 basehttp 154 "GET /static/images/slide03.jpg HTTP/1.1" 404 1678
+WARNING 2021-12-22 19:23:09,811 basehttp 154 "GET /static/images/banner01.jpg HTTP/1.1" 404 1681
+WARNING 2021-12-22 19:23:09,812 basehttp 154 "GET /static/images/slide04.jpg HTTP/1.1" 404 1678
+WARNING 2021-12-22 19:23:09,813 basehttp 154 "GET /static/images/adv01.jpg HTTP/1.1" 404 1672
+WARNING 2021-12-22 19:23:09,830 basehttp 154 "GET /static/images/goods/goods004.jpg HTTP/1.1" 404 1699
+WARNING 2021-12-22 19:23:09,830 basehttp 154 "GET /static/images/goods/goods003.jpg HTTP/1.1" 404 1699
+WARNING 2021-12-22 19:23:09,831 basehttp 154 "GET /static/images/goods/goods005.jpg HTTP/1.1" 404 1699
+WARNING 2021-12-22 19:23:09,833 basehttp 154 "GET /static/images/goods/goods008.jpg HTTP/1.1" 404 1699
+WARNING 2021-12-22 19:23:09,834 basehttp 154 "GET /static/images/banner02.jpg HTTP/1.1" 404 1681
+WARNING 2021-12-22 19:23:09,834 basehttp 154 "GET /static/images/banner03.jpg HTTP/1.1" 404 1681
+WARNING 2021-12-22 19:23:09,836 basehttp 154 "GET /static/images/goods/goods009.jpg HTTP/1.1" 404 1699
+INFO 2021-12-22 19:25:19,815 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:26:09,058 basehttp 154 "GET / HTTP/1.1" 200 38951
+INFO 2021-12-22 19:26:09,085 basehttp 154 "GET /static/js/vue-2.5.16.js HTTP/1.1" 200 289307
+INFO 2021-12-22 19:26:09,086 basehttp 154 "GET /static/css/reset.css HTTP/1.1" 200 638
+INFO 2021-12-22 19:26:09,087 basehttp 154 "GET /static/css/main.css HTTP/1.1" 200 40091
+INFO 2021-12-22 19:26:09,108 basehttp 154 "GET /static/js/axios-0.18.0.min.js HTTP/1.1" 200 12941
+INFO 2021-12-22 19:26:09,118 basehttp 154 "GET /static/js/jquery-1.12.4.min.js HTTP/1.1" 200 97163
+INFO 2021-12-22 19:26:09,122 basehttp 154 "GET /static/js/common.js HTTP/1.1" 200 891
+INFO 2021-12-22 19:26:09,136 basehttp 154 "GET /static/js/slide.js HTTP/1.1" 200 1822
+INFO 2021-12-22 19:26:09,152 basehttp 154 "GET /static/images/1.png HTTP/1.1" 200 3555
+INFO 2021-12-22 19:26:09,158 basehttp 154 "GET /static/images/goods/goods002.jpg HTTP/1.1" 200 5377
+INFO 2021-12-22 19:26:09,158 basehttp 154 "GET /static/images/goods/goods001.jpg HTTP/1.1" 200 5391
+INFO 2021-12-22 19:26:09,160 basehttp 154 "GET /static/js/index.js HTTP/1.1" 200 1143
+INFO 2021-12-22 19:26:09,161 basehttp 154 "GET /static/images/slide01.jpg HTTP/1.1" 200 67813
+INFO 2021-12-22 19:26:09,161 basehttp 154 "GET /static/images/slide02.jpg HTTP/1.1" 200 89905
+WARNING 2021-12-22 19:26:09,163 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+INFO 2021-12-22 19:26:09,170 basehttp 154 "GET /static/images/slide03.jpg HTTP/1.1" 200 70152
+INFO 2021-12-22 19:26:09,176 basehttp 154 "GET /static/images/goods/goods003.jpg HTTP/1.1" 200 8579
+INFO 2021-12-22 19:26:09,176 basehttp 154 "GET /static/images/goods/goods004.jpg HTTP/1.1" 200 6565
+INFO 2021-12-22 19:26:09,177 basehttp 154 "GET /static/images/banner01.jpg HTTP/1.1" 200 23658
+INFO 2021-12-22 19:26:09,177 basehttp 154 "GET /static/images/adv01.jpg HTTP/1.1" 200 39831
+INFO 2021-12-22 19:26:09,178 basehttp 154 "GET /static/images/icons.png HTTP/1.1" 200 7740
+INFO 2021-12-22 19:26:09,178 basehttp 154 "GET /static/images/slide04.jpg HTTP/1.1" 200 107973
+INFO 2021-12-22 19:26:09,191 basehttp 154 "GET /static/images/goods/goods005.jpg HTTP/1.1" 200 7578
+INFO 2021-12-22 19:26:09,191 basehttp 154 "GET /static/images/goods/goods008.jpg HTTP/1.1" 200 7072
+INFO 2021-12-22 19:26:09,192 basehttp 154 "GET /static/images/banner03.jpg HTTP/1.1" 200 22681
+INFO 2021-12-22 19:26:09,192 basehttp 154 "GET /static/images/banner02.jpg HTTP/1.1" 200 26729
+INFO 2021-12-22 19:26:09,192 basehttp 154 "GET /static/images/goods/goods009.jpg HTTP/1.1" 200 8738
+INFO 2021-12-22 19:26:14,084 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-22 19:26:17,720 basehttp 154 "GET /users/register HTTP/1.1" 200 4652
+INFO 2021-12-22 19:26:17,755 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 1863
+INFO 2021-12-22 19:26:17,761 basehttp 154 "GET /static/images/pic_code.jpg HTTP/1.1" 200 4507
+INFO 2021-12-22 19:26:17,787 basehttp 154 "GET /static/images/icons02.png HTTP/1.1" 200 3935
+INFO 2021-12-22 19:26:17,787 basehttp 154 "GET /static/images/interval_line.png HTTP/1.1" 200 1123
+INFO 2021-12-22 19:26:17,788 basehttp 154 "GET /static/images/register_banner.png HTTP/1.1" 200 54894
+INFO 2021-12-22 19:26:56,176 basehttp 154 "GET /users/register HTTP/1.1" 200 4632
+INFO 2021-12-22 19:26:56,203 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:27:00,412 basehttp 154 "POST /users/register HTTP/1.1" 200 4632
+INFO 2021-12-22 19:27:04,044 basehttp 154 "POST /users/register HTTP/1.1" 200 4632
+INFO 2021-12-22 19:30:00,913 autoreload 203 D:\(Project\MyDjango\ltmall\apps\contents\urls.py changed, reloading.
+INFO 2021-12-22 19:30:01,425 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:30:11,191 basehttp 154 "POST /users/register HTTP/1.1" 200 4632
+INFO 2021-12-22 19:30:11,217 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:30:21,251 basehttp 154 "POST /users/register HTTP/1.1" 200 4632
+INFO 2021-12-22 19:31:23,528 basehttp 154 "POST /users/register HTTP/1.1" 200 4651
+INFO 2021-12-22 19:31:23,552 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:32:13,346 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:32:26,478 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:32:26,513 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:33:45,201 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-22 19:33:45,723 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:33:49,196 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:33:49,224 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:33:58,571 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:34:06,125 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:34:11,132 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:34:15,086 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-22 19:34:18,329 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:34:24,550 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:34:25,422 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:34:37,909 basehttp 154 "POST /users/register HTTP/1.1" 302 0
+INFO 2021-12-22 19:34:37,915 basehttp 154 "GET / HTTP/1.1" 200 38951
+INFO 2021-12-22 19:49:23,184 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:49:27,061 basehttp 154 "GET /users/register HTTP/1.1" 200 4637
+INFO 2021-12-22 19:49:28,744 basehttp 154 "GET /users/register HTTP/1.1" 200 4637
+INFO 2021-12-22 19:49:28,767 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:49:29,956 basehttp 154 "POST /users/register HTTP/1.1" 200 4637
+INFO 2021-12-22 19:49:31,221 basehttp 154 "POST /users/register HTTP/1.1" 200 4637
+INFO 2021-12-22 19:50:01,047 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-22 19:50:01,605 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:50:31,764 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:50:35,970 basehttp 154 "POST /users/register HTTP/1.1" 200 4637
+INFO 2021-12-22 19:51:54,803 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-22 19:51:55,328 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:51:56,445 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:52:55,886 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:52:55,912 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 1863
+INFO 2021-12-22 19:53:08,555 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:53:08,589 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 19:54:40,844 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 19:54:45,754 basehttp 154 "POST /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 19:54:45,790 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 20:03:53,687 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 20:03:57,513 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-22 20:03:59,634 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:03:59,672 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 3687
+INFO 2021-12-22 20:04:00,690 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 3687
+INFO 2021-12-22 20:04:02,415 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:02,911 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:03,094 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:03,245 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:03,411 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:03,570 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:03,729 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:03,881 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:04,038 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:04,210 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:04,411 basehttp 154 "GET /users/register HTTP/1.1" 200 4655
+INFO 2021-12-22 20:04:28,397 autoreload 203 D:\(Project\MyDjango\ltmall\ltmall\settings_dev.py changed, reloading.
+INFO 2021-12-22 20:04:28,883 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 20:22:57,455 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 20:23:03,016 basehttp 154 "GET / HTTP/1.1" 200 38951
+WARNING 2021-12-22 20:23:09,520 basehttp 154 "GET /register.html HTTP/1.1" 404 2245
+INFO 2021-12-22 20:23:16,089 basehttp 154 "GET /users/register HTTP/1.1" 200 4654
+INFO 2021-12-22 20:23:16,117 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 3834
+WARNING 2021-12-22 20:23:28,625 log 228 Forbidden (CSRF token missing or incorrect.): /users/register
+WARNING 2021-12-22 20:23:28,625 basehttp 154 "POST /users/register HTTP/1.1" 403 2513
+WARNING 2021-12-22 20:23:47,228 log 228 Forbidden (CSRF token missing or incorrect.): /users/register
+WARNING 2021-12-22 20:23:47,228 basehttp 154 "POST /users/register HTTP/1.1" 403 2513
+INFO 2021-12-22 20:23:52,071 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 20:23:53,765 basehttp 154 "GET /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:24:01,942 basehttp 154 "POST /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:26:01,230 autoreload 203 D:\(Project\MyDjango\ltmall\apps\users\views.py changed, reloading.
+INFO 2021-12-22 20:26:01,812 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 20:27:12,652 basehttp 154 "POST /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:27:12,689 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 20:27:39,429 basehttp 154 "POST /users/register HTTP/1.1" 302 0
+INFO 2021-12-22 20:27:39,433 basehttp 154 "GET / HTTP/1.1" 200 38951
+INFO 2021-12-22 20:29:43,066 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-22 20:29:46,884 basehttp 154 "GET /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:29:46,926 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 20:31:12,875 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-22 20:31:21,782 basehttp 154 "POST /users/register HTTP/1.1" 302 0
+INFO 2021-12-22 20:31:21,792 basehttp 154 "GET / HTTP/1.1" 200 38951
+WARNING 2021-12-22 20:31:21,901 basehttp 154 "GET /static/js/axios.min.map HTTP/1.1" 404 1672
+INFO 2021-12-22 20:31:40,288 basehttp 154 "GET /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:31:43,972 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-22 20:31:46,919 basehttp 154 "GET /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:31:46,957 basehttp 154 "GET /static/js/register.js HTTP/1.1" 200 3826
+INFO 2021-12-22 20:32:03,697 basehttp 154 "POST /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:32:03,737 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0
+INFO 2021-12-22 20:32:26,761 basehttp 154 "POST /users/register HTTP/1.1" 200 4796
+INFO 2021-12-22 20:32:26,806 basehttp 154 "GET /static/js/register.js HTTP/1.1" 304 0

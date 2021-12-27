@@ -1,0 +1,60 @@
+INFO 2021-12-17 15:41:59,439 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-17 15:42:33,465 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-17 15:42:36,814 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-17 15:42:43,875 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-17 15:44:50,176 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-17 15:46:15,577 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-17 15:46:18,220 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-17 15:46:21,986 basehttp 154 "GET /users/ HTTP/1.1" 200 144
+INFO 2021-12-17 15:49:54,198 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-17 15:49:55,598 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-17 15:50:05,563 basehttp 154 "GET /users/register HTTP/1.1" 200 2966
+INFO 2021-12-17 15:50:05,593 basehttp 154 "GET /static/css/reset.css HTTP/1.1" 200 638
+INFO 2021-12-17 15:50:05,595 basehttp 154 "GET /static/images/1.png HTTP/1.1" 200 3555
+INFO 2021-12-17 15:50:05,595 basehttp 154 "GET /static/images/pic_code.jpg HTTP/1.1" 200 4507
+INFO 2021-12-17 15:50:05,596 basehttp 154 "GET /static/css/main.css HTTP/1.1" 200 40091
+INFO 2021-12-17 15:50:05,607 basehttp 154 "GET /static/images/icons02.png HTTP/1.1" 200 3935
+INFO 2021-12-17 15:50:05,607 basehttp 154 "GET /static/images/interval_line.png HTTP/1.1" 200 1123
+INFO 2021-12-17 15:50:05,608 basehttp 154 "GET /static/images/register_banner.png HTTP/1.1" 200 54894
+INFO 2021-12-17 15:56:59,820 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-17 15:57:05,622 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-17 15:57:10,858 basehttp 154 "GET /users/register HTTP/1.1" 200 2938
+INFO 2021-12-17 15:57:10,884 basehttp 154 "GET /static/users/images/1.png HTTP/1.1" 200 3555
+INFO 2021-12-17 16:00:50,656 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-17 16:00:51,923 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-17 16:00:55,701 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:00:55,720 basehttp 154 "GET /static/users/images/pic_code.jpg HTTP/1.1" 200 4507
+INFO 2021-12-17 16:00:56,461 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:00:56,910 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:00:57,078 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:00:57,236 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:00:57,411 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:00:57,594 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:01:03,680 basehttp 154 "GET /users/register HTTP/1.1" 200 2979
+INFO 2021-12-17 16:03:17,376 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-17 16:03:17,406 basehttp 154 "GET /static/users/css/reset.css HTTP/1.1" 200 638
+INFO 2021-12-17 16:03:17,407 basehttp 154 "GET /static/users/css/main.css HTTP/1.1" 200 40091
+INFO 2021-12-17 16:03:17,420 basehttp 154 "GET /static/users/images/icons02.png HTTP/1.1" 200 3935
+INFO 2021-12-17 16:03:17,420 basehttp 154 "GET /static/users/images/interval_line.png HTTP/1.1" 200 1123
+INFO 2021-12-17 16:03:17,420 basehttp 154 "GET /static/users/images/register_banner.png HTTP/1.1" 200 54894
+INFO 2021-12-17 18:15:07,617 autoreload 578 Watching for file changes with StatReloader
+WARNING 2021-12-17 18:15:10,068 basehttp 154 "GET / HTTP/1.1" 404 2027
+INFO 2021-12-17 18:15:12,628 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+WARNING 2021-12-17 18:15:12,666 basehttp 154 "GET /static/users/css/main.css HTTP/1.1" 404 1678
+WARNING 2021-12-17 18:15:12,666 basehttp 154 "GET /static/users/css/reset.css HTTP/1.1" 404 1681
+WARNING 2021-12-17 18:15:12,668 basehttp 154 "GET /static/users/images/1.png HTTP/1.1" 404 1678
+WARNING 2021-12-17 18:15:12,668 basehttp 154 "GET /static/users/images/pic_code.jpg HTTP/1.1" 404 1699
+INFO 2021-12-17 18:15:20,851 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-17 18:15:31,910 autoreload 203 D:\(Project\MyDjango\ltmall\ltmall\settings.py changed, reloading.
+INFO 2021-12-17 18:15:32,485 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-17 18:15:32,682 basehttp 154 "GET /users/register HTTP/1.1" 200 2986
+INFO 2021-12-17 18:15:32,713 basehttp 154 "GET /static/users/css/reset.css HTTP/1.1" 200 638
+INFO 2021-12-17 18:15:32,714 basehttp 154 "GET /static/users/images/1.png HTTP/1.1" 200 3555
+INFO 2021-12-17 18:15:32,714 basehttp 154 "GET /static/users/css/main.css HTTP/1.1" 200 40091
+INFO 2021-12-17 18:15:32,716 basehttp 154 "GET /static/users/images/pic_code.jpg HTTP/1.1" 200 4507
+INFO 2021-12-17 18:15:32,730 basehttp 154 "GET /static/users/images/interval_line.png HTTP/1.1" 304 0
+INFO 2021-12-17 18:15:32,730 basehttp 154 "GET /static/users/images/register_banner.png HTTP/1.1" 304 0
+INFO 2021-12-17 18:15:32,730 basehttp 154 "GET /static/users/images/icons02.png HTTP/1.1" 304 0
+INFO 2021-12-17 19:55:48,123 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-17 20:02:33,012 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-17 20:04:22,208 autoreload 578 Watching for file changes with StatReloader
