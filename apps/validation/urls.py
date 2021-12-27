@@ -16,5 +16,5 @@ from . import views
 
 urlpatterns = [
     # 图形验证码
-    re_path(r'^image_codes/^(?P<uuid>[\w-]+)/$', views.ImageCodeView.as_view()),
+    re_path(r'^image_codes/(?P<uuid>[\w-]+)/$', views.ImageCodeView.as_view()),
 ]

@@ -14,6 +14,6 @@ print(os.environ)
 
 # 导入开发环境以及生产环境设置
 if os.environ.get('PRODUCTION_SETTINGS', 0):
-    from .settings_dev import *
+    from .dev import *
 else:
-    from .settings_pro import *
+    from .pro import *

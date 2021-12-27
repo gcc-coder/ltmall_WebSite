@@ -1,0 +1,7 @@
+ERROR 2021-12-27 16:17:28,577 log 228 Internal Server Error: /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view validation.views.ImageCodeView didn't return an HttpResponse object. It returned None instead.

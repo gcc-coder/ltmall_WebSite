@@ -1,1 +1,46 @@
 INFO 2021-12-27 12:26:48,223 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:17:25,754 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:17:28,459 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+ERROR 2021-12-27 16:17:28,577 log 228 Internal Server Error: /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view validation.views.ImageCodeView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-27 16:17:28,577 log 228 Internal Server Error: /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/
+Traceback (most recent call last):
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\(Project\Envs\MyDjango-UsDAF7iD\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view validation.views.ImageCodeView didn't return an HttpResponse object. It returned None instead.
+ERROR 2021-12-27 16:17:28,578 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 500 60969
+INFO 2021-12-27 16:18:40,919 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:18:43,060 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:18:43,092 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 3192
+INFO 2021-12-27 16:19:34,288 autoreload 203 D:\(Project\MyDjango\ltmall\apps\validation\views.py changed, reloading.
+INFO 2021-12-27 16:19:34,802 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:19:36,874 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:19:36,903 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 3318
+INFO 2021-12-27 16:19:39,982 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:19:39,991 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 2900
+INFO 2021-12-27 16:19:40,764 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:19:40,773 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 3311
+INFO 2021-12-27 16:19:46,841 autoreload 203 D:\(Project\MyDjango\ltmall\apps\validation\views.py changed, reloading.
+INFO 2021-12-27 16:19:47,362 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:19:48,077 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:19:48,102 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 3669
+INFO 2021-12-27 16:19:48,981 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:19:48,993 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 3421
+INFO 2021-12-27 16:19:49,688 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:19:49,699 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 2904
+INFO 2021-12-27 16:19:50,451 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:19:50,463 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 3557
+INFO 2021-12-27 16:20:50,862 autoreload 203 D:\(Project\MyDjango\ltmall\apps\validation\views.py changed, reloading.
+INFO 2021-12-27 16:20:51,358 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:25:51,047 autoreload 203 D:\(Project\MyDjango\ltmall\apps\validation\views.py changed, reloading.
+INFO 2021-12-27 16:25:51,619 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:30:56,305 autoreload 578 Watching for file changes with StatReloader
+INFO 2021-12-27 16:31:00,269 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090 HTTP/1.1" 301 0
+INFO 2021-12-27 16:31:00,297 basehttp 154 "GET /image_codes/1cfc101a-b7a9-4ff5-9c34-de2f356ef090/ HTTP/1.1" 200 3676
