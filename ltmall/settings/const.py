@@ -9,4 +9,9 @@
  
 @Motto:不积跬步无以至千里，不积小流无以成江海！
 """
+# 验证码有效期
 IMAGE_CODE_REDIS_EXPIRES = 300
+SMS_CODE_REDIS_EXPIRES = 300
+
+# 短信模板
+SMS_SEND_TEMPLATE_ID = 1

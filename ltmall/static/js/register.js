@@ -3,20 +3,25 @@ let vm = new Vue({
     // 修改Vue变量的读取语法
     delimiters: ['[[', ']]'],
     data: {
+        // others
+        uuid: '',
+        image_code_url: '',
+
         // v-model
         username: '',
         password: '',
         password2: '',
         mobile: '',
         allow: '',
+        image_code: '',
 
         // v-show
-
         error_username: false,
         error_password: false,
         error_password2: false,
         error_mobile: false,
         error_allow: false,
+        error_image_code: false,
 
         // error_message
         error_username_msg: '',
@@ -24,8 +29,30 @@ let vm = new Vue({
         error_password2_msg: '',
         error_mobile_msg: '',
         error_allow_msg: '',
+        error_image_code_msg: '',
+    },
+    // 页面加载完成之后，才会被调用的方法
+    mounted(){
+        // 展示图形验证码
+        this.generate_image_code()
     },
     methods: {
+        // 生成图形验证码
+        generate_image_code(){
+            // 生成UUID。函数generateUUID(): 封装在common.js文件中，需提前引入
+            this.uuid = generateUUID();
+            this.image_code_url = '/image_codes/'+ this.uuid +'/';
+        },
+        // 验证图形验证码
+        check_image_code(){
+            if (this.image_code.length != 4){
+                // alert(this.image_code)
+                this.error_image_code = true;
+                this.error_image_code_msg = "请填写4位图形验证码"
+            }else {
+                this.error_image_code = false;
+            }
+        },
         // 检验用户名
         check_username(){
             let re = /^[a-zA-Z0-9_-]{4,20}$/;
