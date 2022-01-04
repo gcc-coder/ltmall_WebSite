@@ -33,7 +33,7 @@ class ImageCodeView(View):
 class SMSCodeView(View):
     """短信验证码逻辑"""
 
-    def get(self, request, mobile ):
+    def get(self, request, mobile):
         """
         :param request:
         :param mobile: 接收手机号参数
@@ -45,20 +45,29 @@ class SMSCodeView(View):
         # 校验参数
         if not all([image_code_client, uuid]):  # 使用all函数来校验参数是否有值
             return HttpResponseForbidden('缺少必传参数')
+
         # 提取图形验证码
-        redis_conn = get_redis_connection('image_codes')
+        redis_conn = get_redis_connection('verify_codes')
         image_code_server = redis_conn.get('img_%s' % uuid)     # 值的类型是字节
-        # print(image_code_server)
+        if image_code_server is None:
+            return JsonResponse({'code': RETCODE.IMAGECODEERR, 'errmsg': '图形验证码已失效'})
         # 删除redis中的图形验证码
         redis_conn.delete('img_%s' % uuid)
         # 对比图形验证码
         if image_code_client.lower() != image_code_server.decode().lower():
             return JsonResponse({'code': RETCODE.IMAGECODEERR, 'errmsg': '输入的图形码有误'})
 
+        # 避免频繁发短信，后端实现逻辑
+        send_flag = redis_conn.get('sms_flag_%s' % mobile)
+        if send_flag:
+            return JsonResponse({'code': RETCODE.THROTTLINGERR, "errmsg": "请勿频繁发送验证码"})
+
         # 生成6位短信验证码:%06d若出现空值，用0补位
         sms_code = "%06d" % random.randint(0, 999999)
         # 保存短信验证码到Redis
         redis_conn.setex('sms_%s' % mobile, const.IMAGE_CODE_REDIS_EXPIRES, sms_code)
+        # 保存短信验证码是否已经发送flag
+        redis_conn.setex('sms_flag_%s' % mobile, const.SEND_SMS_CODE_FLAG, 1)   # 60秒过期，value 1可自定义
         # 发送短信验证码
         CCP().send_message(const.SMS_SEND_TEMPLATE_ID, mobile, (sms_code, const.SMS_CODE_REDIS_EXPIRES//60))
 

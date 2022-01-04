@@ -111,8 +111,8 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
-    # 图形验证码
-    "image_codes": {
+    # 验证码
+    "verify_codes": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/2",  # 2号库
         "OPTIONS": {

@@ -4,6 +4,7 @@ from django.views.generic import View
 from .forms import RegisterFrom
 from .models import User
 from django.contrib.auth import login
+from django_redis import get_redis_connection
 
 # Create your views here.
 def index(request):
@@ -28,7 +29,14 @@ class RegisterView(View):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             mobile = form.cleaned_data.get('mobile')
+            sms_code_client = form.cleaned_data.get('sms_code')
             # 需判断用户名或手机号是否已经存在于数据库
+            redis_conn = get_redis_connection('verify_codes')
+            sms_code_server = redis_conn.get('sms_%s' % mobile)
+            if sms_code_server is None:
+                return render(request, 'users/register.html', {'sms_code_errmsg': '短信验证码已经失效'})
+            if sms_code_client != sms_code_server.decode():
+                return render(request, 'users/register.html', {'sms_code_errmsg': '短信验证码输入有误'})
             # user_info = User.objects.values('mobile', 'username')
             # info = [info.values() for info in user_info]
             # if (mobile not in info) and (username not in info):
