@@ -19,10 +19,23 @@ class RegisterFrom(forms.Form):
     password2 = forms.CharField(max_length=8, min_length=6)
     mobile = forms.CharField(max_length=11, min_length=11)
 
-    # 短信和图片验证码
+    # 仅检测短信和图片验证码位数，具体逻辑不在此处实现
     sms_code = forms.CharField(max_length=6, min_length=6)
     # image_code = forms.CharField(max_length=6)
 
+    def clean_pwd(self):
+        # 重写clean方法
+        cleaned_data = super().clean()
+        pwd = cleaned_data.get('password')
+        pwd2 = cleaned_data.get('password2')
+
+        if pwd != pwd2:
+            # print(forms.ValidationError('两次密码不一致'))     # ['两次密码不一致']
+            raise forms.ValidationError('两次密码不一致')
+
+        return cleaned_data
+
+    # 可通过ajax方式定义接口，来验证用户名和手机号，此处可省略
     def clean_username(self):
         username = self.cleaned_data.get('username')
         username_exists = User.objects.filter(username=username).exists()
@@ -38,13 +51,4 @@ class RegisterFrom(forms.Form):
             raise forms.ValidationError('手机号码已经存在')
 
         return mobile
-    def clean(self):
-        cleaned_data = super().clean()
-        pwd = cleaned_data.get('password')
-        pwd2 = cleaned_data.get('password2')
 
-        if pwd != pwd2:
-            # print(forms.ValidationError('两次密码不一致'))     # ['两次密码不一致']
-            raise forms.ValidationError('两次密码不一致')
-
-        return cleaned_data

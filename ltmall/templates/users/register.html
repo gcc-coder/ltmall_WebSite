@@ -58,16 +58,21 @@
                                 <input type="text" name="sms_code" id="msg_code" class="msg_input" v-model="sms_code" @blur="check_sms_code">
                                 <a @click="send_sms_code" class="get_msg_code">[[ sms_code_tip ]]</a>
                                 <span class="error_tip" v-show="error_sms_code">[[ error_sms_code_msg ]]</span>
+                                {# 接收校验短信验证码的错误结果 #}
+                                {% if sms_code_errmsg %}
+                                    <span class="error_tip">{{ sms_code_errmsg }}</span>
+                                {% endif %}
                             </li>
                             <li class="agreement">
+                                {# checked="checked"可实现默认勾选，需去掉v-model #}
                                 <input type="checkbox" name="allow" v-model="allow" id="allow" @change="check_allow">
                                 <label>同意”LT商城用户使用协议“</label>
                                 <span class="error_tip" v-show="error_allow">[[ error_allow_msg ]]</span>
-							<span class="error_tip">
-								{% if register_errmsg %}
-									{{ register_errmsg }}
-								{% endif %}
-							</span>
+                                <span class="error_tip">
+                                    {% if register_errmsg %}
+                                        {{ register_errmsg }}
+                                    {% endif %}
+                                </span>
                             </li>
                             <li class="reg_sub">
                                 <input type="submit" value="注 册">

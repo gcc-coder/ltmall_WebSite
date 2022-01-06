@@ -83,6 +83,7 @@ let vm = new Vue({
                     }, 1000)
                 }else{
                     if (response.data.code == '4001'){
+                        // alert(4001)
                         // 图形验证码输入有误
                         this.error_image_code_msg = response.data.errmsg;
                         this.error_image_code = true;
@@ -193,7 +194,7 @@ let vm = new Vue({
                     .then(response => {
                         // console.log(response.data);
                         if (response.data.count == 1){
-                            // 用户名已经存在
+                            // 手机号已经存在
                             this.error_mobile_msg = '该手机号已经注册';
                             this.error_mobile = true
                         }else {
@@ -221,10 +222,12 @@ let vm = new Vue({
             this.check_password();
             this.check_password2();
             this.check_mobile();
+            this.check_image_code();
+            this.check_sms_code();
             this.check_allow();
 
             // 校验错误数据都为true时的处理逻辑
-            if (this.error_username == true || this.error_password == true || this.error_password2 == true || this.error_mobile == true || this.error_allow == true) {
+            if (this.error_username == true || this.error_password == true || this.error_password2 == true || this.error_mobile == true || this.error_allow == true || this.error_image_code == true || this.error_sms_code == true) {
                 // 不满足登录条件：禁用表单提交
 				window.event.returnValue = false
             }

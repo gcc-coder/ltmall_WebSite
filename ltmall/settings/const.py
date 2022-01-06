@@ -16,5 +16,5 @@ SMS_CODE_REDIS_EXPIRES = 300
 # 短信模板
 SMS_SEND_TEMPLATE_ID = 1
 
-# 60s内是否重复发送的标记
+# 60s内是否重复发送短信验证码的标记
 SEND_SMS_CODE_FLAG = 60

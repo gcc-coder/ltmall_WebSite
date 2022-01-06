@@ -5,6 +5,7 @@ from .forms import RegisterFrom
 from .models import User
 from django.contrib.auth import login
 from django_redis import get_redis_connection
+from ltmall.utils.response_code import RETCODE
 
 # Create your views here.
 def index(request):
@@ -21,7 +22,7 @@ class RegisterView(View):
         """
         return render(request, 'users/register.html')
 
-    def post (self, request):
+    def post(self, request):
         """提供用户注册逻辑, 处理POST提交的数据逻辑"""
         form = RegisterFrom(request.POST)
 
@@ -30,21 +31,23 @@ class RegisterView(View):
             password = form.cleaned_data.get('password')
             mobile = form.cleaned_data.get('mobile')
             sms_code_client = form.cleaned_data.get('sms_code')
-            # 需判断用户名或手机号是否已经存在于数据库
+
+            # 校验短信验证码
             redis_conn = get_redis_connection('verify_codes')
             sms_code_server = redis_conn.get('sms_%s' % mobile)
             if sms_code_server is None:
                 return render(request, 'users/register.html', {'sms_code_errmsg': '短信验证码已经失效'})
             if sms_code_client != sms_code_server.decode():
                 return render(request, 'users/register.html', {'sms_code_errmsg': '短信验证码输入有误'})
+            # 需判断用户名或手机号是否已经存在于数据库
             # user_info = User.objects.values('mobile', 'username')
             # info = [info.values() for info in user_info]
             # if (mobile not in info) and (username not in info):
+
             # 将用户信息保存到数据库
             try:
                 user = User.objects.create_user(username=username, password=password, mobile=mobile)
             except Exception as e:
-                print(e)
                 return render(request, 'users/register.html', {'register_errmsg': '注册失败'})
             # 状态保持
             login(request, user)
@@ -60,6 +63,7 @@ class RegisterView(View):
             # return HttpResponse('验证数据无效，请检查')
 
 
+# 定义ajax所用接口，用来验证用户名和手机号是否已经注册
 class CheckUserView(View):
     """检测用户名是否重复注册"""
 
@@ -69,7 +73,7 @@ class CheckUserView(View):
         :return: 返回JSON数据。count若为1，表示用户名重复
         """
         count = User.objects.filter(username=username).count()
-        return JsonResponse({'code': 200, 'errmsg': 'OK', 'count': count})
+        return JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK', 'count': count})
 
 
 class CheckMobileView(View):
@@ -81,4 +85,4 @@ class CheckMobileView(View):
         :return: 返回JSON数据。count若为1，表示手机号重复
         """
         count = User.objects.filter(mobile=mobile).count()
-        return JsonResponse({'code': 200, 'errmsg': 'OK', 'count': count})
+        return JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK', 'count': count})

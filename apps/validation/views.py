@@ -5,8 +5,11 @@ from django_redis import get_redis_connection
 from ltmall.settings import const
 from validation.libs.ronglianyun.ccp_sms import CCP
 from ltmall.utils.response_code import RETCODE
+from celery_tasks.sms.tasks import send_sms_code
 import random
+import logging
 
+logger = logging.getLogger('django')
 
 class ImageCodeView(View):
     """图形验证码逻辑"""
@@ -22,12 +25,11 @@ class ImageCodeView(View):
         # print(text)
 
         # 保存图片验证码到Redis
-        redis_conn = get_redis_connection('image_codes')
+        redis_conn = get_redis_connection('verify_codes')
         redis_conn.setex('img_%s' % uuid, const.IMAGE_CODE_REDIS_EXPIRES, text)    # 有效时间300s
 
         # 响应图片验证码
-        # content_type用来指定返回值image的格式
-        return HttpResponse(image, content_type='image/jpeg')
+        return HttpResponse(image, content_type='image/jpeg')   # content_type指定返回值image格式
 
 
 class SMSCodeView(View):
@@ -57,19 +59,32 @@ class SMSCodeView(View):
         if image_code_client.lower() != image_code_server.decode().lower():
             return JsonResponse({'code': RETCODE.IMAGECODEERR, 'errmsg': '输入的图形码有误'})
 
+        # 生成6位短信验证码:%06d若出现空值，用0补位
+        sms_code = "%06d" % random.randint(0, 999999)
+        # 保存到日志
+        logger.info(sms_code)
+        # 保存短信验证码到Redis
+        # redis_conn.setex('sms_%s' % mobile, const.IMAGE_CODE_REDIS_EXPIRES, sms_code)
+
         # 避免频繁发短信，后端实现逻辑
         send_flag = redis_conn.get('sms_flag_%s' % mobile)
         if send_flag:
             return JsonResponse({'code': RETCODE.THROTTLINGERR, "errmsg": "请勿频繁发送验证码"})
+        # 保存是否已发送的flag
+        # redis_conn.setex('sms_flag_%s' % mobile, const.SEND_SMS_CODE_FLAG, 1)   # 60秒过期，value 1可自定义
 
-        # 生成6位短信验证码:%06d若出现空值，用0补位
-        sms_code = "%06d" % random.randint(0, 999999)
-        # 保存短信验证码到Redis
-        redis_conn.setex('sms_%s' % mobile, const.IMAGE_CODE_REDIS_EXPIRES, sms_code)
-        # 保存短信验证码是否已经发送flag
-        redis_conn.setex('sms_flag_%s' % mobile, const.SEND_SMS_CODE_FLAG, 1)   # 60秒过期，value 1可自定义
+        # 通过redis管道来实现
+        # 创建redis管道
+        pl = redis_conn.pipeline()
+        # 将命令添加到队列
+        pl.setex('sms_%s' % mobile, const.SMS_CODE_REDIS_EXPIRES, sms_code)
+        pl.setex("send_flag_%s" % mobile, const.SEND_SMS_CODE_FLAG, 1)
+        # 执行
+        pl.execute()
+
         # 发送短信验证码
-        CCP().send_message(const.SMS_SEND_TEMPLATE_ID, mobile, (sms_code, const.SMS_CODE_REDIS_EXPIRES//60))
+        # CCP().send_message(const.SMS_SEND_TEMPLATE_ID, mobile, (sms_code, const.SMS_CODE_REDIS_EXPIRES//60))
+        send_sms_code.delay(mobile, sms_code)
 
         # 响应结果
         # return HttpResponse('Hello')
