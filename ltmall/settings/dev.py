@@ -245,5 +245,6 @@ LOGGING = {
     }
 }
 
-# 指定自定义用户模型
+# 使用自定义模型和认证方法
 AUTH_USER_MODEL = 'users.User'
+AUTHENTICATION_BACKENDS = ['ltmall.utils.auth_utils.UsernameMobileBackend']

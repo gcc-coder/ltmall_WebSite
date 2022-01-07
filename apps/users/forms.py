@@ -14,7 +14,7 @@ from .models import User
 
 
 class RegisterFrom(forms.Form):
-    username = forms.CharField(max_length=10, min_length=3, required=True, error_messages={'max_length': '用户名字符不能超过10个'})
+    username = forms.CharField(max_length=11, min_length=3, required=True, error_messages={'max_length': '用户名字符不能超过10个'})
     password = forms.CharField(max_length=8, min_length=6)
     password2 = forms.CharField(max_length=8, min_length=6)
     mobile = forms.CharField(max_length=11, min_length=11)
@@ -52,3 +52,7 @@ class RegisterFrom(forms.Form):
 
         return mobile
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=11, min_length=4)
+    password = forms.CharField(max_length=8, min_length=6)

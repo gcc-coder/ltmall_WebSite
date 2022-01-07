@@ -12,7 +12,7 @@
 from django.urls import path, re_path
 from . import views
 
-app_name = ''
+app_name = 'users'
 
 urlpatterns = [
     path('', views.index),
@@ -21,4 +21,5 @@ urlpatterns = [
     # 判断用户名是否重复，register.js会调用该url
     re_path(r'username/(?P<username>[a-zA-Z0-9_-]{4,20})/count/$', views.CheckUserView.as_view()),
     re_path(r'mobile/(?P<mobile>1[35789][0-9]{9})/count/$', views.CheckMobileView.as_view()),
+    path('login/', views.LoginView.as_view(), name='login'),
 ]

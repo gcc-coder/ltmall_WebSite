@@ -69,6 +69,12 @@
                                 <label>同意”LT商城用户使用协议“</label>
                                 <span class="error_tip" v-show="error_allow">[[ error_allow_msg ]]</span>
                                 <span class="error_tip">
+                                    {% if forms_errors %}
+                                        {% for key,error in forms_errors.items %}
+                                            {{ error }}
+                                        {% endfor %}
+								    {% endif %}
+
                                     {% if register_errmsg %}
                                         {{ register_errmsg }}
                                     {% endif %}

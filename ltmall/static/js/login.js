@@ -13,7 +13,7 @@ let vm = new Vue({
     methods: {
         // 检查账号
         check_username(){
-        	let re = /^[a-zA-Z0-9_-]{5,20}$/;
+        	let re = /^[a-zA-Z0-9_-]{4,20}$/;
 			if (re.test(this.username)) {
                 this.error_username = false;
             } else {
@@ -22,7 +22,7 @@ let vm = new Vue({
         },
 		// 检查密码
         check_password(){
-        	let re = /^[0-9A-Za-z]{8,20}$/;
+        	let re = /^[0-9A-Za-z]{6,20}$/;
 			if (re.test(this.password)) {
                 this.error_password = false;
             } else {

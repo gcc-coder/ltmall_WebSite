@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
-from .forms import RegisterFrom
+from .forms import RegisterFrom, LoginForm
 from .models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -56,8 +57,9 @@ class RegisterView(View):
             return redirect("contents:index")
 
         else:
-            context: {
-                'forms_error': form.errors.get_json_data()
+            print(form.errors.get_json_data())
+            context = {
+                'forms_errors': form.errors
             }
             return render(request, 'users/register.html', context=context)
             # return HttpResponse('验证数据无效，请检查')
@@ -86,3 +88,62 @@ class CheckMobileView(View):
         """
         count = User.objects.filter(mobile=mobile).count()
         return JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK', 'count': count})
+
+
+class LoginView(View):
+    """用户名登录逻辑"""
+
+    def get(self, request):
+        """
+        提供登录界面
+        :return: 渲染到登录界面
+        """
+        return render(request, "users/login.html")
+
+    def post(self, request):
+        """
+        实现登录逻辑
+        :return: 登录结果
+        """
+        login_form = LoginForm(request.POST)
+
+        if login_form.is_valid():
+            # 接收参数
+            username = login_form.cleaned_data.get('username')
+            password = login_form.cleaned_data.get('password')
+            # 如果没有用form表单验证的话,不能用login_form.cleaned_data
+            remembered = request.POST.get('remembered')
+
+            # 校验参数
+            user_count = User.objects.filter(Q(username=username) | Q(mobile=username)).count()
+            if user_count == 0:
+                return render(request, "users/login.html", {"errmsg": "该账户没有注册"})
+
+            # 认证登录用户
+            # user = User.objects.get(username=username)
+            # print(user.check_password(password))      # 若是未注册用户，会报错
+            user = authenticate(username=username, password=password)
+            print(user)   # 未注册，返回None
+            if user is None:
+                return render(request, "users/login.html", {"errmsg": "用户名或密码不正确"})
+
+            # 状态保持
+            # login(request, user)
+
+            # 使用remembered保持登录状态
+            if remembered != 'on':
+                # 如果没有记住登录状态, 状态保持在浏览器关闭的时候就销毁
+                request.session.set_expiry(0)
+            else:
+                # 如果记住登录状态 默认是两周
+                request.session.set_expiry(None)
+
+            # 响应结果
+            return redirect(reverse('contents:index'))
+
+        else:
+            print(login_form.errors.get_json_data())
+            context = {
+                'forms_errors': login_form.errors
+            }
+            return render(request, 'users/login.html', context=context)
