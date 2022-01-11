@@ -248,3 +248,6 @@ LOGGING = {
 # 使用自定义模型和认证方法
 AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = ['ltmall.utils.auth_utils.UsernameMobileBackend']
+
+# 指定未登陆用户重定向地址
+LOGIN_URL = '/users/login/'

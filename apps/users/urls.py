@@ -22,4 +22,7 @@ urlpatterns = [
     re_path(r'username/(?P<username>[a-zA-Z0-9_-]{4,20})/count/$', views.CheckUserView.as_view()),
     re_path(r'mobile/(?P<mobile>1[35789][0-9]{9})/count/$', views.CheckMobileView.as_view()),
     path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
+    # 用户中心
+    path('center/', views.UserCenterView.as_view(), name='center'),
 ]

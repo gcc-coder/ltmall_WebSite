@@ -3,7 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
 from .forms import RegisterFrom, LoginForm
 from .models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
 from django.db.models import Q
@@ -123,12 +124,12 @@ class LoginView(View):
             # user = User.objects.get(username=username)
             # print(user.check_password(password))      # 若是未注册用户，会报错
             user = authenticate(username=username, password=password)
-            print(user)   # 未注册，返回None
+            # print(user)   # 未注册，返回None
             if user is None:
                 return render(request, "users/login.html", {"errmsg": "用户名或密码不正确"})
 
             # 状态保持
-            # login(request, user)
+            login(request, user)
 
             # 使用remembered保持登录状态
             if remembered != 'on':
@@ -138,12 +139,52 @@ class LoginView(View):
                 # 如果记住登录状态 默认是两周
                 request.session.set_expiry(None)
 
-            # 响应结果
-            return redirect(reverse('contents:index'))
+            next = request.GET.get('next')
+            if next:
+                response = redirect(next)
+            else:
+                response = redirect(reverse('contents:index'))
+            response.set_cookie('username', user.username, max_age=3600*24*3)   # 保存3天
+            # 响应登录结果
+            return response
 
         else:
-            print(login_form.errors.get_json_data())
+            # print(login_form.errors.get_json_data())
             context = {
                 'forms_errors': login_form.errors
             }
             return render(request, 'users/login.html', context=context)
+
+
+class LogoutView(View):
+    """用户退出登录逻辑"""
+
+    def get(self, request):
+        """实现退出登录功能"""
+        # 清除状态保持信息
+        logout(request)
+
+        # 重定向到首页或登录页面
+        # response = redirect(reverse("contents:index"))
+        response = redirect(reverse("users:login"))
+        # 删除cookies信息
+        response.delete_cookie('username')
+
+        # 响应结果
+        return response
+
+
+class UserCenterView(LoginRequiredMixin, View):
+    """显示用户中心逻辑"""
+
+    def get(self, request):
+        """响应用户中心页面"""
+        # login_url = '/login/'
+        # redirect_field_name = 'redirect_to'
+
+        # if request.user.is_authenticated:
+        #     return render(request, "users/user_center_info.html")
+        # else:
+        #     return redirect(reverse('users:login'))
+
+        return render(request, "users/user_center_info.html")
