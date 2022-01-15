@@ -48,6 +48,7 @@ class SMSCodeView(View):
         if not all([image_code_client, uuid]):  # 使用all函数来校验参数是否有值
             return HttpResponseForbidden('缺少必传参数')
 
+        # 发送短信验证码前，进行校验图形验证码
         # 提取图形验证码
         redis_conn = get_redis_connection('verify_codes')
         image_code_server = redis_conn.get('img_%s' % uuid)     # 值的类型是字节

@@ -78,7 +78,7 @@ let vm = new Vue({
                             this.send_flag = false
                         }else {
                             num -= 1;
-                            this.sms_code_tip = num + '秒'
+                            this.sms_code_tip = num + '秒后重试'
                         }
                     }, 1000)
                 }else{
