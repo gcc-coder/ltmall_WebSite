@@ -4,7 +4,7 @@
 @Author：Rick
 @Blog：http://xxxxxx
  
-@File：auth_utils.py
+@File：auth_username.py
 @Time：2022/1/7 15:31
  
 @Motto：不积跬步无以至千里，不积小流无以成江海！
@@ -39,7 +39,7 @@ class UsernameMobileBackend(ModelBackend):
 
     def authenticate(self, request, username=None, password=None, **kwargs):
         """
-        重写认证方法
+        重写认证方法，使支持验证手机号作为登录用户
         :param username: 用户名或者手机号
         :param password: 明文密码
         :param kwargs: 其他额外参数

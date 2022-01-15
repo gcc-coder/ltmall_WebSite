@@ -26,7 +26,7 @@ SECRET_KEY = 'er592y07&i#8-%dtipw#kn9x#e_sq84@)o*md4ny$fjya6@u=!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.im30.top', '127.0.0.1']
 
 
 # Application definition
@@ -34,6 +34,7 @@ sys.path.append(os.path.join(BASE_DIR, '../apps'))
 # print(sys.path)
 INSTALLED_APPS = [
     'users',
+    'oauth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -247,7 +248,7 @@ LOGGING = {
 
 # 使用自定义模型和认证方法
 AUTH_USER_MODEL = 'users.User'
-AUTHENTICATION_BACKENDS = ['ltmall.utils.auth_utils.UsernameMobileBackend']
+AUTHENTICATION_BACKENDS = ['ltmall.utils.auth_username.UsernameMobileBackend']
 
 # 指定未登陆用户重定向地址
 LOGIN_URL = '/users/login/'

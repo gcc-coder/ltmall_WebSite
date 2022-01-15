@@ -23,4 +23,5 @@ urlpatterns = [
     path('users/', include('users.urls')),
     # 验证码
     path('', include('validation.urls')),
+    path('', include('oauth.urls')),
 ]

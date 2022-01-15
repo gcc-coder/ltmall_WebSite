@@ -18,3 +18,17 @@ SMS_SEND_TEMPLATE_ID = 1
 
 # 60s内是否重复发送短信验证码的标记
 SEND_SMS_CODE_FLAG = 60
+
+# Cookie有效期
+SET_COOKIE_EXPIRES = 3600*24*3
+
+# oauth Access_Token的过期时间
+ACCESS_TOKEN_EXPIRES = 300
+
+
+# QQ登录的配置参数
+QQ_CLIENT_ID = '101518219'
+QQ_CLIENT_SECRET = '418d84ebdc7241efb79536886ae95224'
+QQ_REDIRECT_URI = 'http://www.meiduo.site:8000/oauth_callback'
+
+

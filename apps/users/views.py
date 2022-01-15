@@ -26,9 +26,11 @@ class RegisterView(View):
 
     def post(self, request):
         """提供用户注册逻辑, 处理POST提交的数据逻辑"""
+        # 验证参数
         form = RegisterFrom(request.POST)
 
         if form.is_valid():
+            # 接收参数
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             mobile = form.cleaned_data.get('mobile')
@@ -115,7 +117,7 @@ class LoginView(View):
             # 如果没有用form表单验证的话,不能用login_form.cleaned_data
             remembered = request.POST.get('remembered')
 
-            # 校验参数
+            # 校验参数: 用户名或手机号
             user_count = User.objects.filter(Q(username=username) | Q(mobile=username)).count()
             if user_count == 0:
                 return render(request, "users/login.html", {"errmsg": "该账户没有注册"})
