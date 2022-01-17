@@ -750,6 +750,7 @@ html,body{height:100%}
 .reg_form li.reg_sub input{width:380px;height:40px;background-color:#ff5757;font-size:18px;color:#fff;font-family:'Microsoft Yahei';cursor:pointer;}
 .reg_form li .error_tip{float:left;height:30px;line-height:30px;margin-left:87px;color:#e62e2e;}
 .login_form_wrap li .error_tip{float:left;height:30px;line-height:50px;margin-left:77px;color:#e62e2e;}
+.right_content li .error_tip{float:left;height:30px;line-height:50px;margin-left:77px;color:#e62e2e;}
 .reg_form li .error_tip2{float:left;height:20px;line-height:20px;margin-left:87px;color:#e62e2e;}
 
 

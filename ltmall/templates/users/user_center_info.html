@@ -65,8 +65,8 @@
              <div class="info_con clearfix">
                 <h3 class="common_title2">基本信息</h3>
                 <ul class="user_info_list">
-                    <li><span>用户名：</span>Rick</li>
-                    <li><span>联系方式：</span>177xxxxxxx</li>
+                    <li><span>用户名：</span>[[ username ]]</li>
+                    <li><span>联系方式：</span>[[ mobile ]]</li>
                     <li>
                         <span>Email：</span>
                         <div v-if="set_email">
@@ -74,6 +74,7 @@
                             <input @click="save_email" type="button" name="" value="保 存">
                             <input @click="cancel_email" type="reset" name="" value="取 消">
                             <div v-show="error_email" class="error_email_tip">邮箱格式错误</div>
+
                         </div>
                         <div v-else>
                             <input v-model="email" type="email" name="email" class="email" readonly>
@@ -84,6 +85,14 @@
                                 待验证<input @click="save_email" :disabled="send_email_btn_disabled" type="button" :value="send_email_tip">
                             </div>
                         </div>
+                        <div>
+                            <span class="error_tip">
+                                {% if errmsg %}
+                                {{ errmsg }}
+                                {% endif %}
+                            </span>
+                        </div>
+
                     </li>
                 </ul>
             </div>

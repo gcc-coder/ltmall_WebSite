@@ -32,20 +32,20 @@
                             <ul>
                                 <li>
                                     <div class="more_input clearfix">
-                                    <input type="checkbox" v-model="remembered" name="remembered">
-                                    <label>记住登录</label>
-                                    <span class="error_tip">
-                                        {% if forms_errors %}
-                                            {% for key,error in forms_errors.items %}
-                                                {{ error }}
-                                            {% endfor %}
-								        {% endif %}
+                                        <input type="checkbox" v-model="remembered" name="remembered">
+                                        <label>记住登录</label>
+                                        <span class="error_tip">
+                                            {% if forms_errors %}
+                                                {% for key,error in forms_errors.items %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            {% endif %}
 
-                                        {% if errmsg %}
-                                            {{ errmsg }}
-                                        {% endif %}
-                                    </span>
-							</div>
+                                            {% if errmsg %}
+                                                {{ errmsg }}
+                                            {% endif %}
+                                        </span>
+							        </div>
                                 </li>
                             </ul>
 							<input type="submit" value="登 录" class="input_submit">

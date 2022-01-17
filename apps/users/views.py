@@ -1,15 +1,22 @@
 from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden, HttpResponseServerError
 from django.views.generic import View
 from .forms import RegisterFrom, LoginForm
 from .models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from ltmall.utils.loginRequire_email import LoginRequiredJsonMixin
 from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
+from django.core.mail import send_mail
 from django.db.models import Q
+from django.conf import settings
+import json, re, logging
 
-# Create your views here.
+
+logger = logging.getLogger('django')
+
+
 def index(request):
     return render(request, 'users/index.html')
 
@@ -176,6 +183,7 @@ class LogoutView(View):
         return response
 
 
+# LoginRequiredMixin用于判断用户是否登录，及处理逻辑
 class UserCenterView(LoginRequiredMixin, View):
     """显示用户中心逻辑"""
 
@@ -189,4 +197,51 @@ class UserCenterView(LoginRequiredMixin, View):
         # else:
         #     return redirect(reverse('users:login'))
 
-        return render(request, "users/user_center_info.html")
+        # print(request.user)
+        context = {
+            'username': request.user.username,
+            'mobile': request.user.mobile
+        }
+
+        return render(request, "users/user_center_info.html", context)
+
+
+class EmailView(LoginRequiredJsonMixin, View):
+    """添加邮箱"""
+
+    def put(self, request):
+        # 将获取的put，转换为QueryDict
+        # from django.http import QueryDict
+        # put = QueryDict(request.body)   # <QueryDict: {'{"email":"firelong.guo@hotmail.com"}': ['']}>
+        put = request.body.decode()
+        email = json.loads(put).get('email')
+
+        # 校验邮箱: ^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$
+        # rui-long.guo@hotmail.com
+        if not re.match(r'^[a-zA-Z0-9_\.-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$', email):
+            # return HttpResponseForbidden('email参数有误')
+            print("email地址无效")
+            return render(request, "users/user_center_info.html", {"errmsg": "email地址无效"})
+
+        # 根据当前登录的用户, 保存到数据库中其对应的email字段
+        try:
+            request.user.email = email
+            request.user.save()
+        except Exception as e:
+            logger.error(e)
+            return HttpResponseServerError('邮箱激活失败')
+
+        # 发送验证邮件
+        # send_mail(subject, message, from_email, recipient_list, html_message=None)
+        html_message = '<p>尊敬的用户您好！</p>' \
+                       '<p>感谢您使用商城。</p>' \
+                       '<p>您的邮箱为：%s 。请点击此链接激活您的邮箱：</p>' \
+                       '<p><a href="%s">%s<a></p>' % (email, 'www.baidu.com', 'www.baidu.com')
+        try:
+            # 同步执行
+            send_mail(subject=settings.EMAIL_SUBJECT, message='', from_email=settings.EMAIL_HOST_USER, recipient_list=[email], html_message=html_message)
+        except Exception as e:
+            logger.error(e)
+            print(e)
+
+        return JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})

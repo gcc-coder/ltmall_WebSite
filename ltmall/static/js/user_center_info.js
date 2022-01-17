@@ -2,6 +2,7 @@ let vm = new Vue({
     el: '#app',
     delimiters: ['[[', ']]'],
     data: {
+        // username: getCookie('username'),
         username: username,
         mobile: mobile,
         email: email,
@@ -44,7 +45,7 @@ let vm = new Vue({
             this.check_email();
 
             if (this.error_email == false) {
-                let url = '/emails/';
+                let url = '/users/emails/';
                 axios.put(url, {
                     email: this.email
                 }, {

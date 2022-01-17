@@ -252,3 +252,11 @@ AUTHENTICATION_BACKENDS = ['ltmall.utils.auth_username.UsernameMobileBackend']
 
 # 指定未登陆用户重定向地址
 LOGIN_URL = '/users/login/'
+
+# 配置邮箱smtp服务器
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'     # 发邮件主机
+EMAIL_PORT = 25                 # 发邮件端口
+EMAIL_HOST_USER = 'guoruilong01@163.com' # 授权的邮箱
+EMAIL_HOST_PASSWORD = 'XTZZLPYGUNCDBHFM'    # 邮箱授权时获得的密码，非注册登录密码
+EMAIL_SUBJECT = 'LT商城邮箱验证'             # 发件人抬头
