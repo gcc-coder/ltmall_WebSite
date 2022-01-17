@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from ltmall.utils.loginRequire_email import LoginRequiredJsonMixin
 from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
+from celery_tasks.emails.tasks import send_validate_email
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.conf import settings
@@ -233,15 +234,20 @@ class EmailView(LoginRequiredJsonMixin, View):
 
         # 发送验证邮件
         # send_mail(subject, message, from_email, recipient_list, html_message=None)
+        """
         html_message = '<p>尊敬的用户您好！</p>' \
                        '<p>感谢您使用商城。</p>' \
                        '<p>您的邮箱为：%s 。请点击此链接激活您的邮箱：</p>' \
                        '<p><a href="%s">%s<a></p>' % (email, 'www.baidu.com', 'www.baidu.com')
+    
         try:
             # 同步执行
             send_mail(subject=settings.EMAIL_SUBJECT, message='', from_email=settings.EMAIL_HOST_USER, recipient_list=[email], html_message=html_message)
         except Exception as e:
             logger.error(e)
             print(e)
+        """
+        verify_url = 'www.baidu.com'
+        send_validate_email.delay(email, verify_url)
 
         return JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})
