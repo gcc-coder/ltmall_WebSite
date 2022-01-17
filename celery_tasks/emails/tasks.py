@@ -24,12 +24,13 @@ logger = logging.getLogger('django')
 @celery_app.task(bind=True, name='send_email', retry_backoff=3)
 # @celery_app.task(name="send_email")
 def send_validate_email(self, to_email, verify_url):
+    subject = 'LT商城邮箱验证'
     html_message = '<p>尊敬的用户您好！</p>' \
                    '<p>感谢您使用商城。</p>' \
                    '<p>您的邮箱为：%s 。请点击此链接激活您的邮箱：</p>' \
                    '<p><a href="%s">%s<a></p>' % (to_email, verify_url, verify_url)
     try:
-        send_mail(subject=settings.EMAIL_SUBJECT, message='', from_email=settings.EMAIL_HOST_USER,
+        send_mail(subject, message='', from_email=settings.DEFAULT_FROM_EMAIL,
                   recipient_list=[to_email], html_message=html_message)
     except Exception as e:
         logger.error(e)
