@@ -10,6 +10,7 @@ from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
 from celery_tasks.emails.tasks import send_validate_email
 from django.core.mail import send_mail
+from ltmall.utils.verify_emails import generate_verify_email_url, check_verify_email_token
 from django.db.models import Q
 from django.conf import settings
 import json, re, logging
@@ -201,7 +202,9 @@ class UserCenterView(LoginRequiredMixin, View):
         # print(request.user)
         context = {
             'username': request.user.username,
-            'mobile': request.user.mobile
+            'mobile': request.user.mobile,
+            'email': request.user.email,
+            'email_active': request.user.email_active
         }
 
         return render(request, "users/user_center_info.html", context)
@@ -247,7 +250,34 @@ class EmailView(LoginRequiredJsonMixin, View):
             logger.error(e)
             print(e)
         """
-        verify_url = 'www.baidu.com'
+        # verify_url = 'www.baidu.com'
+        verify_url = generate_verify_email_url(request.user)
         send_validate_email.delay(email, verify_url)
 
         return JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})
+
+
+class VerifyEmailView(View):
+    """验证邮箱链接，将email_active改为true"""
+
+    def get(self, request):
+        # 获取验证链接的token信息
+        token = request.GET.get('token')
+        if not token:
+            return HttpResponseServerError('无效的token')
+
+        # 传入token，进行校验
+        user = check_verify_email_token(token)
+        if not user:
+            return HttpResponseServerError('无效的token')
+
+        try:
+            # 修改email_active字段
+            user.email_active = True
+            user.save()
+        except Exception as e:
+            logging.error(e)
+            return HttpResponseServerError('激活邮箱失败')
+
+        return redirect(reverse('users:center'))
+

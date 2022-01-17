@@ -8,7 +8,7 @@
 @Time：2022/1/16 16:58
  
 @Motto：不积跬步无以至千里，不积小流无以成江海！
-@Description：处理用户未登录，而进行验证邮箱的操作
+@Description：用户未登录时，进行验证邮箱的操作
 """
 
 from django.contrib.auth.mixins import LoginRequiredMixin
