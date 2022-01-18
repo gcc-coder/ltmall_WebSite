@@ -24,4 +24,5 @@ urlpatterns = [
     # 验证码
     path('', include('validation.urls')),
     path('', include('oauth.urls')),
+    path('', include('areas.urls')),
 ]

@@ -257,7 +257,7 @@ class EmailView(LoginRequiredJsonMixin, View):
         return JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})
 
 
-class VerifyEmailView(View):
+class VerifyEmailView(LoginRequiredJsonMixin, View):
     """验证邮箱链接，将email_active改为true"""
 
     def get(self, request):
@@ -281,3 +281,9 @@ class VerifyEmailView(View):
 
         return redirect(reverse('users:center'))
 
+
+class AddressView(LoginRequiredJsonMixin, View):
+    """用户收货地址"""
+    def get(self, request):
+        """提供收货地址界面"""
+        return render(request, "users/user_center_site.html")

@@ -189,7 +189,7 @@ let vm = new Vue({
                 // 注意：0 == '';返回true; 0 === '';返回false;
                 if (this.editing_address_index === '') {
                     // 新增地址
-                    let url = '/addresses/create/';
+                    let url = '/users/addresses/create/';
                     axios.post(url, this.form_address, {
                         headers: {
                             'X-CSRFToken':getCookie('csrftoken')
@@ -197,12 +197,13 @@ let vm = new Vue({
                         responseType: 'json'
                     })
                         .then(response => {
+
                             if (response.data.code == '0') {
                                 // 局部刷新界面：展示所有地址信息，将新的地址添加到头部
                                 this.addresses.splice(0, 0, response.data.address);
                                 this.is_show_edit = false;
                             } else if (response.data.code == '4101') {
-                                location.href = '/login/?next=/addresses/';
+                                location.href = '/users/login/?next=/addresses/';
                             } else {
                                 alert(response.data.errmsg);
                             }
@@ -212,7 +213,7 @@ let vm = new Vue({
                         })
                 } else {
                     // 修改地址
-                    let url = '/addresses/' + this.addresses[this.editing_address_index].id + '/';
+                    let url = '/users/addresses/' + this.addresses[this.editing_address_index].id + '/';
                     axios.put(url, this.form_address, {
                         headers: {
                             'X-CSRFToken':getCookie('csrftoken')
@@ -224,7 +225,7 @@ let vm = new Vue({
                                 this.addresses[this.editing_address_index] = response.data.address;
                                 this.is_show_edit = false;
                             } else if (response.data.code == '4101') {
-                                location.href = '/login/?next=/addresses/';
+                                location.href = '/users/login/?next=/addresses/';
                             } else {
                                 alert(response.data.errmsg);
                             }
@@ -237,7 +238,7 @@ let vm = new Vue({
         },
         // 删除地址
         delete_address(index){
-            let url = '/addresses/' + this.addresses[index].id + '/';
+            let url = '/users/addresses/' + this.addresses[index].id + '/';
             axios.delete(url, {
                 headers: {
                     'X-CSRFToken':getCookie('csrftoken')
@@ -260,7 +261,7 @@ let vm = new Vue({
         },
         // 设置默认地址
         set_default(index){
-            let url = '/addresses/' + this.addresses[index].id + '/default/';
+            let url = '/users/addresses/' + this.addresses[index].id + '/default/';
             axios.put(url, {}, {
                 headers: {
                     'X-CSRFToken':getCookie('csrftoken')
@@ -272,7 +273,7 @@ let vm = new Vue({
                         // 设置默认地址标签
                         this.default_address_id = this.addresses[index].id;
                     } else if (response.data.code == '4101') {
-                        location.href = '/login/?next=/addresses/';
+                        location.href = '/users/login/?next=/addresses/';
                     } else {
                         alert(response.data.errmsg);
                     }
@@ -295,7 +296,7 @@ let vm = new Vue({
             if (!this.new_title) {
                 alert("请填写标题后再保存！");
             } else {
-                let url = '/addresses/' + this.addresses[index].id + '/title/';
+                let url = '/users/addresses/' + this.addresses[index].id + '/title/';
                 axios.put(url, {
                     title: this.new_title
                 }, {
@@ -310,7 +311,7 @@ let vm = new Vue({
                             this.addresses[index].title = this.new_title;
                             this.cancel_title();
                         } else if (response.data.code == '4101') {
-                            location.href = '/login/?next=/addresses/';
+                            location.href = '/users/login/?next=/addresses/';
                         } else {
                             alert(response.data.errmsg);
                         }

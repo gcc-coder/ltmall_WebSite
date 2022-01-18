@@ -35,6 +35,7 @@ sys.path.append(os.path.join(BASE_DIR, '../apps'))
 INSTALLED_APPS = [
     'users',
     'oauth',
+    'areas',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

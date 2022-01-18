@@ -29,4 +29,6 @@ urlpatterns = [
     path('emails/', views.EmailView.as_view()),
     # 验证邮箱
     path('emails/verification/', views.VerifyEmailView.as_view()),
+    # 渲染收货地址
+    path('addresses/', views.AddressView.as_view(), name='address'),
 ]
