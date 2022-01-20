@@ -25,6 +25,8 @@ SET_COOKIE_EXPIRES = 3600*24*3
 # oauth Access_Token的过期时间
 ACCESS_TOKEN_EXPIRES = 300
 
+# 省市区缓存数据过期时间
+AREAS_CACHE_EXPIRES = 3600
 
 # QQ登录的配置参数
 QQ_CLIENT_ID = '101518219'

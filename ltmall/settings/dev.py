@@ -121,6 +121,14 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
+    # 省市区缓存或直接使用django自带的cache模块，保存至default的0号库
+    "area_cache": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/3",  # 2号库
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
 }
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
@@ -259,7 +267,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.163.com'     # 发邮件主机
 EMAIL_PORT = 25                 # 发邮件端口
 EMAIL_HOST_USER = 'guoruilong01@163.com' # 授权的邮箱
-EMAIL_HOST_PASSWORD = 'xxx'    # 邮箱授权时获得的密码，非注册登录密码
+EMAIL_HOST_PASSWORD = 'XXXX'    # 邮箱授权时获得的密码，非注册登录密码
 # EMAIL_FROM = '商城<guoruilong01@163.com>'     # 自定义发件人名称
 DEFAULT_FROM_EMAIL = '商城<guoruilong01@163.com>'     # 自定义发件人名称
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
