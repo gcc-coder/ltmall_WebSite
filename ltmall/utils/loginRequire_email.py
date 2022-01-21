@@ -17,6 +17,8 @@ from ltmall.utils.response_code import RETCODE
 
 
 class LoginRequiredJsonMixin(LoginRequiredMixin):
+    """重写handle_no_permission方法"""
+
     def handle_no_permission(self):
         """返回JSON数据"""
 

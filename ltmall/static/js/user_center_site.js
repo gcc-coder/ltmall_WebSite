@@ -197,7 +197,6 @@ let vm = new Vue({
                         responseType: 'json'
                     })
                         .then(response => {
-
                             if (response.data.code == '0') {
                                 // 局部刷新界面：展示所有地址信息，将新的地址添加到头部
                                 this.addresses.splice(0, 0, response.data.address);

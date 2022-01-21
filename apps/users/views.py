@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden, HttpResponseServerError
 from django.views.generic import View
 from .forms import RegisterFrom, LoginForm
-from .models import User
+from .models import User, Address
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ltmall.utils.loginRequire_email import LoginRequiredJsonMixin
@@ -257,7 +257,7 @@ class EmailView(LoginRequiredJsonMixin, View):
         return JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})
 
 
-class VerifyEmailView(LoginRequiredJsonMixin, View):
+class VerifyEmailView(LoginRequiredMixin, View):
     """验证邮箱链接，将email_active改为true"""
 
     def get(self, request):
@@ -282,8 +282,99 @@ class VerifyEmailView(LoginRequiredJsonMixin, View):
         return redirect(reverse('users:center'))
 
 
-class AddressView(LoginRequiredJsonMixin, View):
+class AddressView(LoginRequiredMixin, View):
     """用户收货地址"""
     def get(self, request):
         """提供收货地址界面"""
-        return render(request, "users/user_center_site.html")
+        # 获取用户地址列表
+        login_user = request.user
+        addresses = Address.objects.filter(user=login_user, is_deleted=False)
+
+        # 地址列表
+        address_dict_list = []
+        for address in addresses:
+            address = {
+                'receiver': address.receiver,
+                'province': address.province.name,
+                'city': address.city.name,
+                'district': address.district.name,
+                'place': address.place,
+                'mobile': address.mobile,
+                'tel': address.tel,
+                'email': address.email
+            }
+            address_dict_list.append(address)
+
+        context = {
+            'default_address_id': login_user.default_address_id,
+            'addresses': address_dict_list,
+        }
+        # 响应结果
+        return render(request, "users/user_center_site.html", context)
+
+
+class CreateAddressView(LoginRequiredJsonMixin, View):
+    """新增收货地址"""
+
+    def post(self, request):
+        """实现新增地址逻辑"""
+        # 接收POST过来的参数(存放于body中)
+        res = json.loads(request.body.decode())
+        receiver = res.get('receiver')
+        province_id = res.get('province_id')
+        city_id = res.get('city_id')
+        district_id = res.get('district_id')
+        place = res.get('place')
+        mobile = res.get('mobile')
+        tel = res.get('tel')
+        email = res.get('email')
+
+        # 校验参数
+        if not all([receiver, province_id, city_id, district_id, place, mobile]):
+            return HttpResponseForbidden('缺少必传参数')
+
+        if not re.match(r'^1[3-9]\d{9}$', mobile):
+            return HttpResponseForbidden('参数mobile有误')
+        if tel:
+            if not re.match(r'^(0[0-9]{2,3}-)?([2-9][0-9]{6,7})+(-[0-9]{1,4})?$', tel):
+                return HttpResponseForbidden('参数tel有误')
+        if email:
+            if not re.match(r'^[a-z0-9][\w\.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$', email):
+                return HttpResponseForbidden('参数email有误')
+
+        try:
+            # 保存地址信息
+            address = Address.objects.create(
+                user=request.user,
+                title=receiver,
+                receiver=receiver,
+                province_id=province_id,
+                city_id=city_id,
+                district_id=district_id,
+                place=place,
+                mobile=mobile,
+                tel=tel,
+                email=email,
+            )
+            if not request.user.default_address_id:
+                # 将默认地址id，关联到address.id
+                request.user.default_address_id = address   # 此处也可直接写address.id
+                request.user.save()
+        except Exception as e:
+            logging.error(e)
+            return HttpResponseServerError({"code": RETCODE.DBERR, "errmsg": "新增收货地址失败"})
+
+        # 新增地址成功，将新增的地址响应给前端实现局部刷新
+        address_dict = {
+            "id": address.id,
+            "receiver": address.receiver,
+            "province": address.province.name,
+            "city": address.city.name,
+            "district": address.district.name,
+            "place": address.place,
+            "mobile": address.mobile,
+            "tel": address.tel,
+            "email": address.email
+        }
+        # 响应保存结果
+        return JsonResponse({"code": RETCODE.OK, "errmsg": "新增收货地址成功", "address": address_dict})
