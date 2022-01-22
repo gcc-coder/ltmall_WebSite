@@ -249,7 +249,7 @@ let vm = new Vue({
                         // 删除对应的标签
                         this.addresses.splice(index, 1);
                     } else if (response.data.code == '4101') {
-                        location.href = '/login/?next=/addresses/';
+                        location.href = '/users/login/?next=/addresses/';
                     }else {
                         alert(response.data.errmsg);
                     }
