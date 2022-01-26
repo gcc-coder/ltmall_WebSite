@@ -29,9 +29,9 @@ ACCESS_TOKEN_EXPIRES = 300
 AREAS_CACHE_EXPIRES = 3600
 
 # QQ登录的配置参数
-QQ_CLIENT_ID = '101518219'
-QQ_CLIENT_SECRET = '418d84ebdc7241efb79536886ae95224'
-QQ_REDIRECT_URI = 'http://www.meiduo.site:8000/oauth_callback'
+QQ_CLIENT_ID = '101994184'
+QQ_CLIENT_SECRET = 'd5211dae96e09ed485f763354a1e0274'
+QQ_REDIRECT_URI = 'http://www.im30.top:8000/oauth_callback'
 
 # 邮箱验证
 VERIFY_EMAIL_URL = 'http://www.im30.top:8000/users/emails/verification/'

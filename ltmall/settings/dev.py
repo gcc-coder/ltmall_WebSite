@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'users',
     'oauth',
     'areas',
+    'goods',
     'contents',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -272,3 +273,9 @@ EMAIL_HOST_PASSWORD = 'XXXX'    # 邮箱授权时获得的密码，非注册登�
 # EMAIL_FROM = '商城<guoruilong01@163.com>'     # 自定义发件人名称
 DEFAULT_FROM_EMAIL = '商城<guoruilong01@163.com>'     # 自定义发件人名称
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# 指定自定义的Django文件存储类
+DEFAULT_FILE_STORAGE = 'ltmall.utils.fastdfs.fdfs_storage.FastDFSStorage'
+# FastDFS相关参数
+# FASTDFS_IMAGE_URL = "http://10.2.234.210:8888/"
+FASTDFS_IMAGE_URL = "http://image.im30.top:8888/"
