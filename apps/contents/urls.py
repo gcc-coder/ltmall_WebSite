@@ -10,7 +10,7 @@
 @Motto:不积跬步无以至千里，不积小流无以成江海！
 """
 from django.urls import path, re_path
-from . import views
+from contents import views
 
 app_name = 'contents'
 

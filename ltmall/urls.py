@@ -20,9 +20,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # 主页
     path('', include('contents.urls')),
+    # 商品
+    path('', include('goods.urls')),
+    # 用户名相关
     path('users/', include('users.urls')),
     # 验证码
     path('', include('validation.urls')),
+    # 第三方登录
     path('', include('oauth.urls')),
+    # 省市区
     path('', include('areas.urls')),
 ]
