@@ -20,7 +20,7 @@ SMS_SEND_TEMPLATE_ID = 1
 SEND_SMS_CODE_FLAG = 60
 
 # Cookie有效期
-SET_COOKIE_EXPIRES = 3600*24*3
+SET_COOKIE_EXPIRES = 3600 * 24 * 3
 
 # oauth Access_Token的过期时间
 ACCESS_TOKEN_EXPIRES = 300
@@ -35,3 +35,6 @@ QQ_REDIRECT_URI = 'http://www.im30.top:8000/oauth_callback'
 
 # 邮箱验证
 VERIFY_EMAIL_URL = 'http://www.im30.top:8000/users/emails/verification/'
+
+# 商品列表，每页的条数
+PAGINATOR_NUM = 5
