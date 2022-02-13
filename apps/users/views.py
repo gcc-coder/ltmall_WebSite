@@ -311,6 +311,7 @@ class AddressView(LoginRequiredMixin, View):
             'default_address_id': login_user.default_address_id,
             'addresses': address_dict_list,
         }
+        # print(login_user.default_address_id)
         # 响应结果
         return render(request, "users/user_center_site.html", context)
 
@@ -358,8 +359,10 @@ class CreateAddressView(LoginRequiredJsonMixin, View):
                 tel=tel,
                 email=email
             )
-            print(request.user.default_address_id)
-            print(request.user.default_address)
+            # print(request.user.default_address_id)
+            # print(request.user.default_address)
+
+            # 如果登录用户没有默认地址,把当前添加的地址设为默认的收获地址
             if not request.user.default_address_id:
                 # 将默认地址id，关联到address.id
                 request.user.default_address_id = address   # 此处也可直接写address.id

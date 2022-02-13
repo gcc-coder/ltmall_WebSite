@@ -90,7 +90,8 @@
                     <li><span>电子邮箱：</span><b>[[ address.email ]]</b></li>
                 </ul>
                 <div class="down_btn">
-                    <a v-if="address.id!=default_address_id" @click="set_default(index)">设为默认</a>
+                    <a v-if="addresses.length===1" @click="set_default(index)"></a>
+                    <a v-else-if="address.id!=default_address_id" @click="set_default(index)">设为默认</a>
                     <a @click="show_edit_site(index)" class="edit_icon">编辑</a>
                 </div>
             </div>
@@ -162,7 +163,7 @@
 	</div>
     <script type="text/javascript">
 		 let addresses = {{ addresses | safe }};
-		 let default_address_id = {{ default_address_id }};
+		 let default_address_id = {{ default_address_id | default:0}};
     </script>
 	<script type="text/javascript" src="{% static 'js/common.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/user_center_site.js' %}"></script>
