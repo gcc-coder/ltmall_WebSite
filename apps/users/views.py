@@ -362,7 +362,7 @@ class CreateAddressView(LoginRequiredJsonMixin, View):
             # print(request.user.default_address_id)
             # print(request.user.default_address)
 
-            # 如果登录用户没有默认地址,把当前添加的地址设为默认的收获地址
+            # 如果登录用户没有默认地址, 把当前添加的地址设为默认的收货地址
             if not request.user.default_address_id:
                 # 将默认地址id，关联到address.id
                 request.user.default_address_id = address   # 此处也可直接写address.id

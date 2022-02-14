@@ -22,7 +22,7 @@ class ImageCodeView(View):
         """
         # 生成图片验证码
         text, image = captcha.generate_captcha()
-        # print(text)
+        # print(search)
 
         # 保存图片验证码到Redis
         redis_conn = get_redis_connection('verify_codes')

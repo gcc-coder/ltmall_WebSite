@@ -30,4 +30,6 @@ urlpatterns = [
     path('', include('oauth.urls')),
     # 省市区
     path('', include('areas.urls')),
+    # Haystack搜索引擎扩展
+    path(r'search/', include('haystack.urls')),
 ]

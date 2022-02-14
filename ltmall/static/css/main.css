@@ -667,7 +667,7 @@ html,body{height:100%}
 
 .login_title{height:60px;width:308px;margin:10px auto;border-bottom:1px solid #e0e0e0;}
 
-/*.login_title a{width:153px;line-height:20px;font-size:18px;color:#5e5e5e;text-align:center;float:left;margin-top:20px;}*/
+/*.login_title a{width:153px;line-height:20px;font-size:18px;color:#5e5e5e;search-align:center;float:left;margin-top:20px;}*/
 .login_title a{width:308px;line-height:20px;font-size:18px;color:#5e5e5e;text-align:center;float:left;margin-top:20px;}
 
 /*.login_title a:first-child{border-right:1px solid #e0e0e0}*/

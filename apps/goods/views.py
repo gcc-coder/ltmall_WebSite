@@ -4,6 +4,7 @@ from ltmall.utils.category import get_categories
 from ltmall.utils.breadcrumb import get_breadcrumb
 from goods.models import SKU, GoodsCategory
 from django import http
+from ltmall.utils.response_code import RETCODE
 from django.views.generic import ListView
 from django.core.paginator import Paginator
 from ltmall.settings import const
@@ -46,8 +47,12 @@ class GoodsListView(View):
 
         # 分页 创建分页器: Paginator('分页的记录来源', '每页记录的条数')
         paginator = Paginator(skus, const.PAGINATOR_NUM)
-        # 获取第page_num页的数据
-        page_skus = paginator.page(page_num)
+        try:
+            # 获取第page_num页的数据
+            page_skus = paginator.page(page_num)
+        except Exception as e:
+            logger.error(e)
+            return render(request, "contents/404.html")
         # 总页面数
         total_page = paginator.num_pages
 
@@ -63,3 +68,39 @@ class GoodsListView(View):
 
         # 响应结果
         return render(request, "contents/list.html", context)
+
+
+class HotGoodsView(View):
+    """热销排行"""
+    def get(self, request, category_id):
+        """
+        提供商品热销排行JSON数据
+        :param category_id: 必传参数
+        :return: Json数据
+        """
+        # 根据销量倒序，取前两个数据
+        skus = SKU.objects.filter(category_id=category_id, is_launched=True).order_by('-sales')[:2]
+        # print(skus)
+        '''
+        "code":"0",
+        "errmsg":"OK",
+        "hot_skus":[
+            {
+                "id":6,
+                "default_image_url":"http://image.meiduo.site:8888/group1/M00/00/02/CtM3BVrRbI2ARekNAAFZsBqChgk3141998",
+                "name":"Apple iPhone 8 Plus (A1864) 256GB 深空灰色 移动联通电信4G手机",
+                "price":"7988.00"
+            },
+        ]
+        '''
+        hot_skus = []
+        for sku in skus:
+            hot_sku = {
+                'id': sku.id,
+                'default_image_url': sku.default_image.url,
+                'name': sku.name,
+                'price': sku.price
+            }
+            hot_skus.append(hot_sku)
+
+        return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok', 'hot_skus': hot_skus})

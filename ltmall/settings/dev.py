@@ -16,7 +16,6 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['www.im30.top', '127.0.0.1']
 
-
 # Application definition
 sys.path.append(os.path.join(BASE_DIR, '../apps'))
 # print(sys.path)
@@ -38,6 +36,7 @@ INSTALLED_APPS = [
     'areas',
     'contents',
     'goods',
+    'haystack',
     # 'goods.apps.GoodsCategory',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ltmall.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -91,7 +89,7 @@ WSGI_APPLICATION = 'ltmall.wsgi.application'
 # 配置MySQL数据库
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',	# 数据库引擎
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'HOST': '127.0.0.1',
         'PORT': 3306,
         'USER': 'root',
@@ -104,14 +102,14 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/0",     # 0号库
+        "LOCATION": "redis://127.0.0.1:6379/0",  # 0号库
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "session": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",     # 1号库
+        "LOCATION": "redis://127.0.0.1:6379/1",  # 1号库
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -155,7 +153,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -169,7 +166,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -180,6 +176,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 
 # 配置工程日志
 import time
+
 cur_path = os.path.dirname(os.path.realpath(__file__))  # log_path是存放日志的路径
 log_path = os.path.join(os.path.dirname(cur_path), '../logs')
 # print(log_path)
@@ -240,7 +237,7 @@ LOGGING = {
     'loggers': {
         # 类型 为 django 处理所有类型的日志，默认调用
         'django': {
-            'handlers': [ 'file'],  # 同时向终端与文件中输出日志
+            'handlers': ['file'],  # 同时向终端与文件中输出日志
             'propagate': True,
             'level': 'INFO',
         },
@@ -267,12 +264,12 @@ LOGIN_URL = '/users/login/'
 
 # 配置邮箱smtp服务器
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.163.com'     # 发邮件主机
-EMAIL_PORT = 25                 # 发邮件端口
-EMAIL_HOST_USER = 'guoruilong01@163.com' # 授权的邮箱
-EMAIL_HOST_PASSWORD = 'XXXX'    # 邮箱授权时获得的密码，非注册登录密码
+EMAIL_HOST = 'smtp.163.com'  # 发邮件主机
+EMAIL_PORT = 25  # 发邮件端口
+EMAIL_HOST_USER = 'guoruilong01@163.com'  # 授权的邮箱
+EMAIL_HOST_PASSWORD = 'XXXX'  # 邮箱授权时获得的密码，非注册登录密码
 # EMAIL_FROM = '商城<guoruilong01@163.com>'     # 自定义发件人名称
-DEFAULT_FROM_EMAIL = '商城<guoruilong01@163.com>'     # 自定义发件人名称
+DEFAULT_FROM_EMAIL = '商城<guoruilong01@163.com>'  # 自定义发件人名称
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # 指定自定义的Django文件存储类
@@ -280,3 +277,17 @@ DEFAULT_FILE_STORAGE = 'ltmall.utils.fastdfs.fdfs_storage.FastDFSStorage'
 # FastDFS相关参数
 # FASTDFS_IMAGE_URL = "http://10.2.234.210:8888/"
 FASTDFS_IMAGE_URL = "http://image.im30.top:8888/"
+
+# Haystack
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://10.2.234.210:9200/',  # Elasticsearch服务器ip地址，端口号固定为9200
+        'INDEX_NAME': 'ltmall',  # Elasticsearch建立的索引库的名称
+    },
+}
+# 当添加、修改、删除数据时，自动生成索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+# es搜索分页的条数
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
