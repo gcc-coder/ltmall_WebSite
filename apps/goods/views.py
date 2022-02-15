@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from ltmall.utils.category import get_categories
 from ltmall.utils.breadcrumb import get_breadcrumb
-from goods.models import SKU, GoodsCategory
+from goods.models import SKU, GoodsCategory, SPUSpecification, SKUSpecification
 from django import http
 from ltmall.utils.response_code import RETCODE
 from django.views.generic import ListView
@@ -72,6 +72,7 @@ class GoodsListView(View):
 
 class HotGoodsView(View):
     """热销排行"""
+
     def get(self, request, category_id):
         """
         提供商品热销排行JSON数据
@@ -112,21 +113,71 @@ class DetailView(View):
     def get(self, request, sku_id):
         """提供商品详情页"""
         try:
-            skus = SKU.objects.get(id=sku_id)
+            # 获取当前商品的sku信息
+            goods_sku = SKU.objects.get(id=sku_id)
         except Exception as e:
             return render(request, 'contents/404.html')
 
         # 查询商品类别
         categories = get_categories()
         # 获取面包屑导航数据
-        breadcrumb = get_breadcrumb(skus.category)
+        breadcrumb = get_breadcrumb(goods_sku.category)
+
+        # 构建当前商品的SKU规格键key
+        sku_specs = SKUSpecification.objects.filter(sku__id=sku_id).order_by('spec_id')
+        sku_key = []
+        for spec in sku_specs:
+            sku_key.append(spec.option.id)
+
+        # 获取当前商品的所有SKU
+        spu_id = goods_sku.spu_id
+        skus = SKU.objects.filter(spu_id=spu_id)
+        # print(skus.query)   # 将ORM转换为SQL语句
+
+        # 构建不同规格参数（选项）的sku字典
+        spec_sku_map = {}   # {(1,4,7):1, }
+        for sku in skus:
+            # 获取商品所有sku的规格参数
+            sku_specs = sku.specs.order_by('spec_id')
+            # 用于形成规格参数-sku字典的键
+            key = []
+            for spec in sku_specs:
+                key.append(spec.option.id)
+            # 向规格参数-sku字典添加记录
+            spec_sku_map[tuple(key)] = sku.id
+        # 获取当前商品的SPU规格信息
+        goods_specs = SPUSpecification.objects.filter(spu_id=spu_id).order_by('id')
+        """
+        <QuerySet [<SPUSpecification: 华为 HUAWEI P10 Plus: 颜色>, <SPUSpecification: 华为 HUAWEI P10 Plus: 版本>]>
+        """
+        # 若当前sku的规格信息不完整，则不再继续
+        if len(sku_key) < len(goods_specs):
+            return
+
+        for index, spec in enumerate(goods_specs):
+            # print(spec)     # 华为 HUAWEI P10 Plus: 颜色
+            # 复制当前sku的规格键
+            key = sku_key[:]
+            # 获取该规格的所有选项
+            spec_options = spec.options.all()
+
+            for option in spec_options:
+                # print(option)       # 华为 HUAWEI P10 Plus: 颜色 - 钻雕金
+                # 在规格参数sku字典中查找符合当前规格的sku
+                key[index] = option.id
+                # 给option类添加属性
+                option.sku_id = spec_sku_map.get(tuple(key))
+            # 给spec添加属性
+            spec.spec_options = spec_options    # spec是一个class
 
         # 渲染页面
         context = {
             'categories': categories,
             'breadcrumb': breadcrumb,
-            'skus': skus,
-            'category_id': skus.category.id
+            'goods_sku': goods_sku,
+            # category_id用于获取热销排行数据
+            'category_id': goods_sku.category.id,
+            'specs': goods_specs,
         }
 
         return render(request, 'contents/detail.html', context)
