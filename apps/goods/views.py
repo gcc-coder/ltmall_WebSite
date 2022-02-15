@@ -104,3 +104,29 @@ class HotGoodsView(View):
             hot_skus.append(hot_sku)
 
         return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok', 'hot_skus': hot_skus})
+
+
+class DetailView(View):
+    """商品详情页"""
+
+    def get(self, request, sku_id):
+        """提供商品详情页"""
+        try:
+            skus = SKU.objects.get(id=sku_id)
+        except Exception as e:
+            return render(request, 'contents/404.html')
+
+        # 查询商品类别
+        categories = get_categories()
+        # 获取面包屑导航数据
+        breadcrumb = get_breadcrumb(skus.category)
+
+        # 渲染页面
+        context = {
+            'categories': categories,
+            'breadcrumb': breadcrumb,
+            'skus': skus,
+            'category_id': skus.category.id
+        }
+
+        return render(request, 'contents/detail.html', context)
