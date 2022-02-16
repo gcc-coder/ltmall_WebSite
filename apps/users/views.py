@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseForbidden, HttpR
 from django.views.generic import View
 from .forms import RegisterFrom, LoginForm
 from .models import User, Address
+from goods import models
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ltmall.utils.loginRequire_email import LoginRequiredJsonMixin
@@ -15,7 +16,6 @@ from django.db.models import Q
 from django.conf import settings
 import json, re, logging
 
-
 logger = logging.getLogger('django')
 
 
@@ -25,6 +25,7 @@ def index(request):
 
 class RegisterView(View):
     """用户注册"""
+
     def get(self, request):
         """
         提供注册界面
@@ -155,7 +156,7 @@ class LoginView(View):
                 response = redirect(next)
             else:
                 response = redirect(reverse('contents:index'))
-            response.set_cookie('username', user.username, max_age=3600*24*3)   # 保存3天
+            response.set_cookie('username', user.username, max_age=3600 * 24 * 3)  # 保存3天
             # 响应登录结果
             return response
 
@@ -284,6 +285,7 @@ class VerifyEmailView(LoginRequiredMixin, View):
 
 class AddressView(LoginRequiredMixin, View):
     """用户收货地址"""
+
     def get(self, request):
         """提供收货地址界面"""
         # 获取用户地址列表
@@ -365,7 +367,7 @@ class CreateAddressView(LoginRequiredJsonMixin, View):
             # 如果登录用户没有默认地址, 把当前添加的地址设为默认的收货地址
             if not request.user.default_address_id:
                 # 将默认地址id，关联到address.id
-                request.user.default_address_id = address   # 此处也可直接写address.id
+                request.user.default_address_id = address  # 此处也可直接写address.id
                 request.user.save()
         except Exception as e:
             logger.error(e)
@@ -486,3 +488,53 @@ class DefaultAddressView(LoginRequiredJsonMixin, View):
 
             # 响应设置默认地址结果
         return JsonResponse({'code': RETCODE.OK, 'errmsg': '设置默认地址成功'})
+
+
+class UserBrowseHistory(LoginRequiredJsonMixin, View):
+    """用户浏览记录"""
+
+    def post(self, request):
+        """保存用户浏览记录"""
+        # 接收参数
+        json_dict = json.loads(request.body.decode())
+        sku_id = json_dict.get('sku_id')
+        # 校验参数
+        try:
+            models.SKU.objects.get(id=sku_id)
+        except models.SKU.DoesNotExist:
+            return HttpResponseForbidden('sku不存在')
+
+        # 保存用户浏览数据
+        redis_conn = get_redis_connection('history')
+        pl = redis_conn.pipeline()
+        user_id = request.user.id
+        # 先去重
+        pl.lrem('history_%s' % user_id, 0, sku_id)
+        # 再存储
+        pl.lpush('history_%s' % user_id, sku_id)
+        # 最后截取
+        pl.ltrim('history_%s' % user_id, 0, 4)
+        # 执行管道
+        pl.execute()
+
+        # 响应结果
+        return JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK'})
+
+    def get(self, request):
+        """获取用户浏览记录"""
+        # 获取Redis存储的sku_id列表信息
+        redis_conn = get_redis_connection('history')
+        sku_ids = redis_conn.lrange('history_%s' % request.user.id, 0, -1)
+
+        # 根据sku_ids列表数据，查询出商品sku信息
+        skus = []
+        for sku_id in sku_ids:
+            sku = models.SKU.objects.get(id=sku_id)
+            skus.append({
+                'id': sku.id,
+                'name': sku.name,
+                'default_image_url': sku.default_image.url,
+                'price': sku.price
+            })
+        # 响应结果
+        return JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK', 'skus': skus})

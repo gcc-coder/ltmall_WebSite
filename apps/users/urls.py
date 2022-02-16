@@ -40,4 +40,6 @@ urlpatterns = [
     re_path('addresses/(?P<address_id>\d+)/$', views.UpdateDestroyAddressView.as_view()),
     # 设置默认地址
     re_path('addresses/(?P<address_id>\d+)/default/$', views.DefaultAddressView.as_view()),
+    # 用户浏览记录
+    path('browse_histories/', views.UserBrowseHistory.as_view()),
 ]

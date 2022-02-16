@@ -125,11 +125,20 @@ CACHES = {
     # 省市区缓存或直接使用django自带的cache模块，保存至default的0号库
     "area_cache": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/3",  # 2号库
+        "LOCATION": "redis://127.0.0.1:6379/3",  # 3号库
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
+    # 保存用户浏览记录
+    "history": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/4",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+
 }
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
