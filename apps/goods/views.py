@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.views import View
 from ltmall.utils.category import get_categories
 from ltmall.utils.breadcrumb import get_breadcrumb
-from goods.models import SKU, GoodsCategory, SPUSpecification, SKUSpecification
+from goods.models import SKU, GoodsCategory, SPUSpecification, SKUSpecification,  GoodsVisitCount
 from django import http
 from ltmall.utils.response_code import RETCODE
 from django.views.generic import ListView
 from django.core.paginator import Paginator
+from django.utils import timezone
+from datetime import datetime
 from ltmall.settings import const
 import logging
 
@@ -169,6 +171,8 @@ class DetailView(View):
                 option.sku_id = spec_sku_map.get(tuple(key))
             # 给spec添加属性
             spec.spec_options = spec_options    # spec是一个class
+            # for s in spec.spec_options:
+                # print(s.sku_id, s.spec_id, goods_sku.id)
 
         # 渲染页面
         context = {
@@ -181,3 +185,36 @@ class DetailView(View):
         }
 
         return render(request, 'contents/detail.html', context)
+
+
+class DetailVisitView(View):
+    """详情页分类商品访问量"""
+
+    def post(self, request, category_id):
+        try:
+            category = GoodsCategory.objects.get(id=category_id)
+        except Exception as e:
+            return http.HttpResponseForbidden('参数异常')
+
+        # 获取当天的日期
+        t = timezone.localtime()
+        today_str = '%d-%02d-%02d' % (t.year, t.month, t.day)
+
+        today_date = datetime.strptime(today_str, '%Y-%m-%d')
+        try:
+            # 查询当天该类别的商品的访问量
+            counts_data = category.visit.get(date=today_date)
+        except Exception as e:
+            # 如果该类别的商品在当天没有访问记录，就新建一个
+            counts_data = GoodsVisitCount()
+
+        try:
+            counts_data.category = category
+            counts_data.count += 1
+            counts_data.save()
+        except Exception as e:
+            logger.error(e)
+            return http.HttpResponseServerError('服务器异常')
+
+        # 响应结果
+        return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK'})
