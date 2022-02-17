@@ -4,7 +4,7 @@ from django import http
 from ltmall.utils.response_code import RETCODE
 from goods import models
 from django_redis import get_redis_connection
-import json, logging
+import json, logging, base64, pickle
 
 logger = logging.getLogger('django')
 
@@ -62,8 +62,60 @@ class CartsView(View):
             # 执行
             pl.execute()
 
+            return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})
         else:
             # 用户未登录，操作cookie购物车
-            pass
+            cart_str = request.COOKIES.get('carts')
 
-        return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})
+            if cart_str:
+                '''解密'''
+                # 将cart_str转成bytes类型的字符串
+                cart_str_bytes = cart_str.encode()
+                # 将cart_str_bytes转成bytes类型的字典
+                cart_dict_bytes = base64.b64decode(cart_str_bytes)
+                # 将cart_dict_bytes转成字典
+                cart_dict = pickle.loads(cart_dict_bytes)
+                """
+                {
+                   "sku_id1":{
+                       "count":"1",
+                       "selected":"True"
+                   }
+                }
+               """
+            else:
+                cart_dict = {}
+
+            # {1: {'count': 1, 'selected': None},2: {'count': 5, 'selected': True}}
+            if sku_id in cart_dict:
+                # 购物车已有商品，添加（增量计算
+                cart_count = cart_dict[sku_id]['count']
+                goods_count += cart_count
+
+                cart_dict[sku_id] = {
+                    'count': goods_count,
+                    'selected': selected
+                }
+                # print(cart_dict)
+            else:
+                # 第一次添加购物车数据到cookie
+                cart_dict[sku_id] = {
+                    'count': goods_count,
+                    'selected': selected
+                }
+                # print(cart_dict)
+
+            '''加密'''
+            # cart_dict将字典转成bytes类型的字典
+            cart_dict_bytes = pickle.dumps(cart_dict)
+            # cart_dict_bytes转成bytes字符串
+            cart_str_bytes = base64.b64encode(cart_dict_bytes)
+            # cart_str_bytes转成字符串  b'rick'=>'rick'
+            cookie_cart_str = cart_str_bytes.decode()
+
+            '''添加到cookie'''
+            response = http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok'})
+            response.set_cookie('carts', cookie_cart_str)
+
+            return response
+
