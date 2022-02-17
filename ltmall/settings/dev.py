@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'contents',
     'goods',
     'haystack',
+    'carts',    # 购物车
     # 'goods.apps.GoodsCategory',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -138,6 +139,14 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
+    # 保存购物车数据
+    "carts": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/4",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+},
 
 }
 
