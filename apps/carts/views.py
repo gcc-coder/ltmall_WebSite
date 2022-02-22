@@ -13,7 +13,7 @@ class CartsView(View):
     """购物车管理"""
 
     def post(self, request):
-        """添加购物车"""
+        """添加商品至购物车"""
         # 接收参数
         carts_json = json.loads(request.body.decode())
         sku_id = carts_json.get('sku_id')
@@ -45,7 +45,7 @@ class CartsView(View):
             redis_conn = get_redis_connection('carts')
             pl = redis_conn.pipeline()  # 使用管道
             # carts_goods_count = redis_conn.hget('carts_%s' % user.id, sku_id)
-            # # hash  carts_1 : {sku_id:count}
+            # # hash类型  carts_1 : {sku_id:count}
             # if carts_goods_count:
             #     # 增加购物车的商品数量
             #     goods_count += carts_goods_count
@@ -53,11 +53,12 @@ class CartsView(View):
             # else:
             #     # 新增购物车商品数据
             #     redis_conn.hset('carts_%s' % user.id, sku_id, goods_count)
+            # 增量购物车商品
             pl.hincrby('carts_%s' % user.id, sku_id, goods_count)
 
             # 被勾选的购物车商品
             if selected:
-                # 集合 selected_user_id: [sku_id1, sku_id3, ...]
+                # 集合类型 selected_user_id: [sku_id1, sku_id3, ...]
                 pl.sadd('selected_%s' % user.id, sku_id)
             # 执行
             pl.execute()
@@ -88,7 +89,7 @@ class CartsView(View):
 
             # {1: {'count': 1, 'selected': None},2: {'count': 5, 'selected': True}}
             if sku_id in cart_dict:
-                # 购物车已有商品，添加（增量计算
+                # 购物车已有商品，直接添加（增量计算）
                 cart_count = cart_dict[sku_id]['count']
                 goods_count += cart_count
 
@@ -105,7 +106,7 @@ class CartsView(View):
                 }
                 # print(cart_dict)
 
-            '''加密'''
+            '''加密，渲染到前端cookie中'''
             # cart_dict将字典转成bytes类型的字典
             cart_dict_bytes = pickle.dumps(cart_dict)
             # cart_dict_bytes转成bytes字符串
@@ -119,3 +120,25 @@ class CartsView(View):
 
             return response
 
+    def get(self, request):
+        """查询购物车商品"""
+        user = request.user
+        if user.is_authenticated:
+            # 用户已经登录
+            redis_conn = get_redis_connection('carts')
+            # carts_1 : {b'3':b'1', b'4':b'2'}  用户1 3号商品添加到购物车1件
+            redis_cart = redis_conn.hgetall('carts_%s' % user.id)
+            # 选中的商品的sku_id
+            redis_selected = redis_conn.smembers('selected_%s' % user.id)
+            # 将redis中的数据转换成cookie中的购物车的字典
+            cart_dict = {}
+            for sku_id, count in redis_cart.items():
+                cart_dict[int(sku_id)] = {
+                    'count': int(count),
+                    'selected': sku_id in redis_selected
+                }
+        else:
+            # 用户未登陆
+            pass
+
+        return render(request, 'contents\cart.html')
