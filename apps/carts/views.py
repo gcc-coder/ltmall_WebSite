@@ -124,13 +124,14 @@ class CartsView(View):
         """查询购物车商品"""
         user = request.user
         if user.is_authenticated:
-            # 用户已经登录
+            # 用户已经登录逻辑
             redis_conn = get_redis_connection('carts')
             # carts_1 : {b'3':b'1', b'4':b'2'}  用户1 3号商品添加到购物车1件
             redis_cart = redis_conn.hgetall('carts_%s' % user.id)
             # 选中的商品的sku_id
             redis_selected = redis_conn.smembers('selected_%s' % user.id)
-            # 将redis中的数据转换成cookie中的购物车的字典
+
+            # 将redis中的数据，转换成与cookie中同样格式的购物车字典
             cart_dict = {}
             for sku_id, count in redis_cart.items():
                 cart_dict[int(sku_id)] = {
@@ -138,7 +139,46 @@ class CartsView(View):
                     'selected': sku_id in redis_selected
                 }
         else:
-            # 用户未登陆
-            pass
+            # 用户未登陆逻辑
+            cart_str = request.COOKIES.get('carts')
+            # gAN9cQAoWAEAAAAxcQF9cQIoWAUAAABjb3VVgBAAAAMnEFfXEGKGg
+            if cart_str:
+                # 将cart_str转成bytes类型的字符串
+                cart_str_bytes = cart_str.encode()
+                # 将cart_str_bytes转成bytes类型的字典
+                cart_dict_bytes = base64.b64decode(cart_str_bytes)
+                # 将cart_dict_bytes转成字典
+                cart_dict = pickle.loads(cart_dict_bytes)
+            else:
+                cart_dict = {}
 
-        return render(request, 'contents\cart.html')
+        sku_ids = cart_dict.keys()
+        # for sku_id in sku_ids:
+        #     sku = SKU.objects.get(id=sku_id)
+        skus = models.SKU.objects.filter(id__in=sku_ids)
+        """
+           {
+              "sku_id1":{
+                  "count":"1",
+                  "selected":"True"
+              }
+           }
+        """
+
+        cart_skus = []
+        for sku in skus:
+            cart_skus.append({
+                'id': sku.id,
+                'count': cart_dict.get(sku.id).get('count'),
+                'selected': str(cart_dict.get(sku.id).get('selected')),  # True 'True'
+                'name': sku.name,
+                'default_image_url': sku.default_image.url,
+                'price': str(sku.price),
+                'amount': str(sku.price * cart_dict.get(sku.id).get('count'))
+            })
+
+        context = {
+            'cart_skus': cart_skus
+        }
+
+        return render(request, 'contents\cart.html', context=context)
