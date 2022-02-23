@@ -335,3 +335,61 @@ class CartsView(View):
                 response.set_cookie('carts', cookie_cart_str)
 
             return response
+
+
+class CartSelectAllView(View):
+    """全选购物车商品"""
+
+    def put(self, request):
+        # 接收参数
+        json_dict = json.loads(request.body.decode())
+        selected = json_dict.get('selected')
+
+        if selected:
+            if not isinstance(selected, bool):
+                return http.HttpResponseForbidden('参数有误')
+
+        user = request.user
+        if user.is_authenticated:
+            redis_conn = get_redis_connection('carts')
+            # 获取所有的记录 {b'2': b'2', b'1': b'1'}
+            redis_cart = redis_conn.hgetall('carts_%s' % user.id)
+
+            if redis_cart:
+                redis_sku_ids = redis_cart.keys()
+                # for redis_sku_id in redis_sku_ids:
+                if selected:
+                    # 全选
+                    redis_conn.sadd('selected_%s' % user.id, *redis_sku_ids)
+                else:
+                    # 取消全选
+                    redis_conn.srem('selected_%s' % user.id, *redis_sku_ids)
+
+            return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK'})
+        else:
+            # 用户未登陆,操作cookie购物车
+            cart_str = request.COOKIES.get('carts')
+            response = http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK'})
+
+            # 若cookie购物车有数据，则可进行全选操作
+            if cart_str:
+                # 将cart_str转成bytes类型的字符串
+                cart_str_bytes = cart_str.encode()
+                # 将cart_str_bytes转成bytes类型的字典
+                cart_dict_bytes = base64.b64decode(cart_str_bytes)
+                # 将cart_dict_bytes转成字典
+                cart_dict = pickle.loads(cart_dict_bytes)
+                # {1: {'count': 2, 'selected': True}, 2: {'count': 1, 'selected': True}}
+                for sku_id in cart_dict:
+                    cart_dict[sku_id]['selected'] = selected
+
+                # cart_dict将字典转成bytes类型的字典
+                cart_dict_bytes = pickle.dumps(cart_dict)
+                # cart_dict_bytes转成bytes字符串
+                cart_str_bytes = base64.b64encode(cart_dict_bytes)
+                # cart_str_bytes转成字符串  b'juran'=>'juran'
+                cookie_cart_str = cart_str_bytes.decode()
+
+                response.set_cookie('carts', cookie_cart_str)
+
+            return response
