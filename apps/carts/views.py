@@ -122,6 +122,8 @@ class CartsView(View):
 
     def get(self, request):
         """查询购物车商品"""
+        print(request)
+
         user = request.user
         if user.is_authenticated:
             # 用户已经登录逻辑
@@ -170,6 +172,7 @@ class CartsView(View):
             cart_skus.append({
                 'id': sku.id,
                 'count': cart_dict.get(sku.id).get('count'),
+                # 转为字符串，方便前端Json调用
                 'selected': str(cart_dict.get(sku.id).get('selected')),  # True 'True'
                 'name': sku.name,
                 'default_image_url': sku.default_image.url,
@@ -182,3 +185,93 @@ class CartsView(View):
         }
 
         return render(request, 'contents\cart.html', context=context)
+
+    def put(self, request):
+        """修改购物车商品数量"""
+
+        # 接收参数
+        json_dict = json.loads(request.body.decode())
+        sku_id = json_dict.get('sku_id')  # 1000
+        count = json_dict.get('count')
+        selected = json_dict.get('selected')
+
+        # 校验参数
+        try:
+            sku = models.SKU.objects.get(id=sku_id)
+        except Exception as e:
+            return http.HttpResponseForbidden('参数sku_id错误')
+
+        try:
+            count = int(count)
+        except Exception as e:
+            return http.HttpResponseForbidden('参数count错误')
+
+        if selected:
+            if not isinstance(selected, bool):
+                return http.HttpResponseForbidden('参数selected错误')
+
+        # 验证用户是否登录
+        user = request.user
+        if user.is_authenticated:
+            # 用户已登录, 修改redis中的购物车数据
+            redis_conn = get_redis_connection('carts')
+            pl = redis_conn.pipeline()  # Redis管道
+            pl.hset('carts_%s' % user.id, sku_id, count)
+            if selected:
+                pl.sadd('selected_%s' % user.id, sku_id)
+            else:
+                pl.srem('selected_%s' % user.id, sku_id)
+            pl.execute()  # 执行管道
+
+            cart_sku = {
+                'id': sku_id,
+                'count': count,
+                'selected': selected,
+                'name': sku.name,
+                'default_image_url': sku.default_image.url,
+                'price': sku.price,
+                'amount': sku.price * count
+            }
+
+            return http.JsonResponse({'code': RETCODE.OK, 'errmsg': '修改购物车成功', 'cart_sku': cart_sku})
+        else:
+            # 用户未登陆, 修改Cookies中的购物车数据
+            cart_str = request.COOKIES.get('carts')
+            # gAN9cQAoWAEAAAAxcQF9cQIoWAUAAABjb3VVgBAAAAMnEFfXEGKGg
+            if cart_str:
+                # 将cart_str转成bytes类型的字符串
+                cart_str_bytes = cart_str.encode()
+                # 将cart_str_bytes转成bytes类型的字典
+                cart_dict_bytes = base64.b64decode(cart_str_bytes)
+                # 将cart_dict_bytes转成字典
+                cart_dict = pickle.loads(cart_dict_bytes)
+            else:
+                cart_dict = {}
+
+            # 将接收到的数据,重新写入到cookie(覆盖)
+            cart_dict[sku_id] = {
+                'count': count,
+                'selected': selected
+            }
+
+            # cart_dict将字典转成bytes类型的字典
+            cart_dict_bytes = pickle.dumps(cart_dict)
+            # cart_dict_bytes转成bytes字符串
+            cart_str_bytes = base64.b64encode(cart_dict_bytes)
+            # cart_str_bytes转成字符串
+            cookie_cart_str = cart_str_bytes.decode()
+
+            cart_sku = {
+                'id': sku_id,
+                'count': count,
+                'selected': selected,
+                'name': sku.name,
+                'default_image_url': sku.default_image.url,
+                'price': sku.price,
+                'amount': sku.price * count
+            }
+
+            response = http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok', 'cart_sku': cart_sku})
+            response.set_cookie('carts', cookie_cart_str)
+
+            return response
