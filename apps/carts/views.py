@@ -97,7 +97,6 @@ class CartsView(View):
                     'count': goods_count,
                     'selected': selected
                 }
-                # print(cart_dict)
             else:
                 # 第一次添加购物车数据到cookie
                 cart_dict[sku_id] = {
@@ -122,8 +121,6 @@ class CartsView(View):
 
     def get(self, request):
         """查询购物车商品"""
-        print(request)
-
         user = request.user
         if user.is_authenticated:
             # 用户已经登录逻辑
@@ -273,5 +270,68 @@ class CartsView(View):
 
             response = http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'ok', 'cart_sku': cart_sku})
             response.set_cookie('carts', cookie_cart_str)
+
+            return response
+
+    def delete(self, request):
+        """删除购物车商品"""
+        # 接收参数
+        json_dict = json.loads(request.body.decode())
+        sku_id = json_dict.get('sku_id')
+
+        # 判断sku_id是否存在
+        try:
+            models.SKU.objects.get(id=sku_id)
+        except Exception as e:
+            return http.HttpResponseForbidden('商品不存在')
+
+        # 判断用户是否登陆
+        user = request.user
+        if user.is_authenticated:
+            # 用户已经登陆,删除redis购物车
+            redis_conn = get_redis_connection('carts')
+            pl = redis_conn.pipeline()
+            # 删除hash购物车商品记录
+            pl.hdel('carts_%s' % user.id, sku_id)
+            # 移除选中状态
+            pl.srem('selected_%s' % user.id, sku_id)
+            # 执行
+            pl.execute()
+            return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK'})
+
+        else:
+            # 用户未登陆, 删除cookie购物车
+            """
+            {
+               "sku_id1":{
+                   "count":"1",
+                   "selected":"True"
+               }
+            }
+            """
+            # 获取cookie中的购物车数据
+            cart_str = request.COOKIES.get('carts')
+            if cart_str:
+                # 将cart_str转成bytes类型的字符串
+                cart_str_bytes = cart_str.encode()
+                # 将cart_str_bytes转成bytes类型的字典
+                cart_dict_bytes = base64.b64decode(cart_str_bytes)
+                # 将cart_dict_bytes转成字典
+                cart_dict = pickle.loads(cart_dict_bytes)
+            else:
+                cart_dict = {}
+            # print(cart_dict)
+            # {1: {'count': 2, 'selected': True}, 2: {'count': 1, 'selected': True}}
+            response = http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK'})
+            if sku_id in cart_dict:
+                del cart_dict[sku_id]
+
+                # cart_dict将字典转成bytes类型的字典
+                cart_dict_bytes = pickle.dumps(cart_dict)
+                # cart_dict_bytes转成bytes字符串
+                cart_str_bytes = base64.b64encode(cart_dict_bytes)
+                # cart_str_bytes转成字符串
+                cookie_cart_str = cart_str_bytes.decode()
+                response.set_cookie('carts', cookie_cart_str)
 
             return response
