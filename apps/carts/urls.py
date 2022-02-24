@@ -20,4 +20,6 @@ urlpatterns = [
     path('carts/', views.CartsView.as_view(), name='info'),
     # 全选购物车商品
     re_path('^carts/selection/$', views.CartSelectAllView.as_view()),
+    # 简单购物车展示
+    re_path('^carts/simple/$', views.CartSimpleView.as_view()),
 ]
