@@ -5,6 +5,7 @@ from ltmall.settings import const
 from django import http
 from ltmall.utils.response_code import RETCODE
 from ltmall.utils.oauth_openid import generate_access_token, check_access_token
+from ltmall.utils.merge_carts import merge_carts_cookies_redis
 from oauth.models import OAuthQQUser
 from users.models import User
 from django.contrib.auth import login
@@ -62,6 +63,9 @@ class QQAuthUserView(View):
 
             # 登录时用户名写入到cookie，以进行展示，有效期3天
             response.set_cookie('username', qq_user.username, const.SET_COOKIE_EXPIRES)
+
+            # 用户登录成功后,合并购物车
+            response = merge_carts_cookies_redis(request, qq_user, response)
 
             # # 响应结果
             # return redirect(reverse('contents:index'))

@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from ltmall.utils.loginRequire_email import LoginRequiredJsonMixin
 from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
+from ltmall.utils.merge_carts import merge_carts_cookies_redis
 from celery_tasks.emails.tasks import send_validate_email
 from django.core.mail import send_mail
 from ltmall.utils.verify_emails import generate_verify_email_url, check_verify_email_token
@@ -157,6 +158,9 @@ class LoginView(View):
             else:
                 response = redirect(reverse('contents:index'))
             response.set_cookie('username', user.username, max_age=3600 * 24 * 3)  # 保存3天
+            # 用户登录成功后,合并购物车
+            response = merge_carts_cookies_redis(request, user, response)
+
             # 响应登录结果
             return response
 
