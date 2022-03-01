@@ -4,7 +4,7 @@
 @Author：Rick
 @Blog：http://xxxxxx
  
-@File：loginRequire_email.py
+@File：loginRequire.py
 @Time：2022/1/16 16:58
  
 @Motto：不积跬步无以至千里，不积小流无以成江海！

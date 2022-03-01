@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'contents',
     'goods',
     'haystack',
-    'carts',    # 购物车
+    'carts',  # 购物车
+    'orders',
     # 'goods.apps.GoodsCategory',
     'django.contrib.admin',
     'django.contrib.auth',

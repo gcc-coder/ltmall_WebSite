@@ -34,4 +34,6 @@ urlpatterns = [
     path(r'search/', include('haystack.urls')),
     # 购物车
     path('', include('carts.urls')),
+    # 订单管理
+    path('', include('orders.urls')),
 ]

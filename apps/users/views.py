@@ -6,7 +6,7 @@ from .models import User, Address
 from goods import models
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from ltmall.utils.loginRequire_email import LoginRequiredJsonMixin
+from ltmall.utils.loginRequire import LoginRequiredJsonMixin
 from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
 from ltmall.utils.merge_carts import merge_carts_cookies_redis
