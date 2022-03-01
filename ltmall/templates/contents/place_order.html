@@ -58,9 +58,16 @@
             {% if addresses %}
                 <dt>寄送到：</dt>
                 {% for address in addresses %}
-                    <dd @click="nowsite={{ address.id }}"><input type="radio" v-model="nowsite"
-                                                                 value="{{ address.id }}">{{ address.province }} {{ address.city }} {{ address.district }}
-                        （{{ address.receiver }} 收） {{ address.mobile }}</dd>
+                    {% if address.id == user.default_address.id %}
+                        <dd @click="nowsite={{ address.id }}"><input type="radio" v-model="nowsite"
+                                                                     value="{{ address.id }}">(默认) {{ address.province }} {{ address.city }} {{ address.district }}
+                            （{{ address.receiver }} 收） {{ address.mobile }}</dd>
+                    {% else %}
+                        <dd @click="nowsite={{ address.id }}"><input type="radio" v-model="nowsite"
+                                                                     value="{{ address.id }}">{{ address.province }} {{ address.city }} {{ address.district }}
+                            （{{ address.receiver }} 收） {{ address.mobile }}</dd>
+                    {% endif %}
+
                 {% endfor %}
             {% endif %}
         </dl>
@@ -87,7 +94,7 @@
         {% for sku in skus %}
             <ul class="goods_list_td clearfix">
                 <li class="col01">{{ loop.index }}</li>
-                <li class="col02"><img src="{{ sku.default_image_url.url }}"></li>
+                <li class="col02"><img src="{{ sku.default_image.url }}"></li>
                 <li class="col03">{{ sku.name }}</li>
                 <li class="col04">台</li>
                 <li class="col05">{{ sku.price }}元</li>
