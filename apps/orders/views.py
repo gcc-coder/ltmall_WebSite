@@ -126,48 +126,84 @@ class OrderCommitView(LoginRequiredJsonMixin, View):
                 sku_ids = new_cart_dict.keys()
 
                 for sku_id in sku_ids:
-                    sku = SKU.objects.get(id=sku_id)
-                    # 原始的库存
-                    origin_stock = sku.stock
-                    # 提交订单的商品的数量  10  5
-                    sku_count = new_cart_dict[sku.id]
+                    # 每个商品都有多次下单的机会，直到库存不足
+                    while True:
+                        sku = SKU.objects.get(id=sku_id)
+                        # 原始的库存
+                        origin_stock = sku.stock
+                        origin_sales = sku.sales
+                        # 提交订单的商品的数量  10  5
+                        sku_count = new_cart_dict[sku.id]
 
-                    # 判断商品的库存
-                    if sku_count > origin_stock:
-                        # 库存不足 回滚
-                        transaction.savepoint_rollback(save_id)
-                        return http.JsonResponse({'code': RETCODE.STOCKERR, 'errmsg': '库存不足'})
-                    # SKU 减库存  加销量
-                    sku.stock -= sku_count  # 会用到搜索，需要开启elasticsearch容器
-                    sku.sales += sku_count
-                    sku.save()
-                    # print(sku.query)
+                        # 判断商品的库存
+                        if sku_count > origin_stock:
+                            # 库存不足 回滚
+                            transaction.savepoint_rollback(save_id)
+                            return http.JsonResponse({'code': RETCODE.STOCKERR, 'errmsg': '库存不足'})
+                        # 测试网络延迟
+                        # import time
+                        # time.sleep(5)
 
-                    # SPU 加销量
-                    sku.spu.sales += sku_count
-                    sku.spu.save()
+                        new_stock = origin_stock - sku_count
+                        new_sales = origin_sales + sku_count
+                        result = SKU.objects.filter(id=sku_id, stock=origin_stock).update(stock=new_stock,
+                                                                                          sales=new_sales)
+                        # 如果数据发生了变化 返回0 表示现在有资源竞争
+                        if result == 0:
+                            continue
 
-                    # 保存订单商品信息
-                    OrderGoods.objects.create(
-                        order=order,
-                        sku=sku,
-                        count=sku_count,
-                        price=sku.price
-                    )
+                        # SKU 减库存  加销量
+                        # sku.stock -= sku_count  # 会用到搜索，需要开启elasticsearch容器
+                        # sku.sales += sku_count
+                        # sku.save()
+                        # print(sku.query)
 
-                    # 累加订单商品的数量和总价到订单基本信息
-                    order.total_count += sku_count
-                    order.total_amount += sku_count * sku.price
+                        # SPU 加销量
+                        sku.spu.sales += sku_count
+                        sku.spu.save()
 
-                # 最后加运费
-                order.total_amount += order.freight
-                order.save()
+                        # 保存订单商品信息
+                        OrderGoods.objects.create(
+                            order=order,
+                            sku=sku,
+                            count=sku_count,
+                            price=sku.price
+                        )
+
+                        # 累加订单商品的数量和总价到订单基本信息
+                        order.total_count += sku_count
+                        order.total_amount += sku_count * sku.price
+
+                        # 下单成功，退出循环
+                        break
+
+                    # 最后加运费
+                    order.total_amount += order.freight
+                    order.save()
             except Exception as e:
                 # 发生异常 回滚
                 transaction.savepoint_rollback(save_id)
                 return http.JsonResponse({'code': RETCODE.DBERR, 'errmsg': '下单失败'})
 
-            # 数据库操作成功 提交事务
+            # 数据库操作成功，提交事务
             transaction.savepoint_commit(save_id)
 
         return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK', 'order_id': order_id})
+
+
+class OrderSuccessView(LoginRequiredMixin, View):
+    """提交订单成功页面"""
+
+    def get(self, request):
+        # order_id=20200908205728000000002&payment_amount=11398&pay_method=2
+        order_id = request.GET.get('order_id')
+        payment_amount = request.GET.get('payment_amount')
+        pay_method = request.GET.get('pay_method')
+
+        context = {
+            'order_id': order_id,
+            'payment_amount': payment_amount,
+            'pay_method': pay_method,
+        }
+
+        return render(request, 'contents\order_success.html', context)
