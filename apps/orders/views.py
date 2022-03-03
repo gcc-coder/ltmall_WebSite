@@ -3,7 +3,7 @@ from django.views import View
 from ltmall.utils.loginRequire import LoginRequiredMixin, LoginRequiredJsonMixin
 from users.models import Address
 from goods.models import SKU
-from orders.models import OrderInfo
+from orders.models import OrderInfo, OrderGoods
 from decimal import Decimal
 from django_redis import get_redis_connection
 from ltmall.utils.response_code import RETCODE
@@ -103,5 +103,55 @@ class OrderCommitView(LoginRequiredJsonMixin, View):
             status=OrderInfo.ORDER_STATUS_ENUM['UNPAID'] if pay_method == OrderInfo.PAY_METHODS_ENUM['ALIPAY'] else
             OrderInfo.ORDER_STATUS_ENUM['UNSEND']
         )
+
+        # 连接Redis
+        redis_conn = get_redis_connection('carts')
+        # {b'1': b'2', b'3': '4'}
+        redis_cart = redis_conn.hgetall("carts_%s" % user.id)
+        # {b'1'}
+        redis_selected = redis_conn.smembers("selected_%s" % user.id)
+
+        # 构造购物车中被勾选的数据
+        new_cart_dict = {}  # {1:2, 2:4}
+        for sku_id in redis_selected:
+            new_cart_dict[int(sku_id)] = int(redis_cart[sku_id])
+
+        sku_ids = new_cart_dict.keys()
+
+        for sku_id in sku_ids:
+            sku = SKU.objects.get(id=sku_id)
+            # 原始的库存
+            origin_stock = sku.stock
+            # 提交订单的商品的数量  10  5
+            sku_count = new_cart_dict[sku.id]
+
+            # 判断商品的库存
+            if sku_count > origin_stock:
+                return http.JsonResponse({'code': RETCODE.STOCKERR, 'errmsg': '库存不足'})
+            # SKU 减库存  加销量
+            sku.stock -= sku_count  # 会用到搜索，需要开启elasticsearch容器
+            sku.sales += sku_count
+            sku.save()
+            # print(sku.query)
+
+            # SPU 加销量
+            sku.spu.sales += sku_count
+            sku.spu.save()
+
+            # 保存订单商品信息
+            OrderGoods.objects.create(
+                order=order,
+                sku=sku,
+                count=sku_count,
+                price=sku.price
+            )
+
+            # 累加订单商品的数量和总价到订单基本信息
+            order.total_count += sku_count
+            order.total_amount += sku_count * sku.price
+
+        # 最后加运费
+        order.total_amount += order.freight
+        order.save()
 
         return http.JsonResponse({'code': RETCODE.OK, 'errmsg': 'OK', 'order_id': order_id})
