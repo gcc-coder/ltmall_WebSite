@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'haystack',
     'carts',  # 购物车
     'orders',
+    'payment',
     # 'goods.apps.GoodsCategory',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -147,7 +148,7 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-},
+    },
 
 }
 
@@ -311,3 +312,8 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # es搜索分页的条数
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
+
+# 对接支付宝
+ALIPAY_APPID = '2021000119630404'
+ALIPAY_DEBUG = True  # 默认False，表示线上环境
+ALIPAY_URL = 'https://openapi.alipaydev.com/gateway.do'  # 支付宝网关地址
