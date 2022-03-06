@@ -318,3 +318,12 @@ ALIPAY_APPID = '2021000119630404'
 ALIPAY_DEBUG = True  # 默认False，表示线上环境
 ALIPAY_URL = 'https://openapi.alipaydev.com/gateway.do'  # 支付宝网关地址
 ALIPAY_RETURN_URL = 'http://www.im30.top:8000/payment/status'
+
+# 定时任务
+# CRONJOBS = [
+#     # 每1分钟生成一次首页静态文件
+#     ('*/1 * * * *', 'contents.crons.generate_static_index_html', '>> ' + os.path.join(BASE_DIR, 'logs/crontab.log'))
+# ]
+
+# 解决中文问题
+# CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
