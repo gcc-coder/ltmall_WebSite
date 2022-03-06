@@ -317,3 +317,4 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
 ALIPAY_APPID = '2021000119630404'
 ALIPAY_DEBUG = True  # 默认False，表示线上环境
 ALIPAY_URL = 'https://openapi.alipaydev.com/gateway.do'  # 支付宝网关地址
+ALIPAY_RETURN_URL = 'http://www.im30.top:8000/payment/status'
